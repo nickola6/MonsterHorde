@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Fence
+  - Water
+  - UI
+  - Player
+  - Enemy
+  - Trap
+  - Resource
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Map
+    uniqueID: 220347707
+    locked: 0
+  - name: Trap
+    uniqueID: 2262960567
+    locked: 0
+  - name: Character
+    uniqueID: 1537985485
+    locked: 0
+  - name: Resource
+    uniqueID: 899384815
+    locked: 0
