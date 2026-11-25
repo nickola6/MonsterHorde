@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TrapCraftingContext : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private TrapSpawner _spawner;
+    [SerializeField] private TrapCraftingView _view;
+    [SerializeField] private LayerMask _playerLayer;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public TrapSpawner Spawner => _spawner;
+    public TrapCraftingView View => _view;
+    public LayerMask PlayerLayer => _playerLayer;
 }
