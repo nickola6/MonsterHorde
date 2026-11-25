@@ -1,22 +1,24 @@
+
 using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public abstract class TrapCrafting : MonoBehaviour
+public class TrapCrafting : MonoBehaviour
 {
     private const float CraftingTime = 1.5f;
 
-    private TrapCraftingContext _context;
+    [SerializeField] private TrapSpawner _spawner;
+    [SerializeField] private TrapCraftingView _view;
+    [SerializeField] private LayerMask _playerLayer;
+    [SerializeField] private TrapConfigSO _config;
+
     private SpriteRenderer _spriteRenderer;
     private Coroutine _craftingRoutine;
     private float _craftingProgress;
     private bool _isCompleted;
 
-    protected abstract Trap Prefab { get; }
-
     private void Awake()
     {
-        _context = GetComponentInParent<TrapCraftingContext>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -27,7 +29,7 @@ public abstract class TrapCrafting : MonoBehaviour
 
         _craftingRoutine = null;
         _craftingProgress = 0f;
-        _context.View.Hide();
+        _view.Hide();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -35,7 +37,7 @@ public abstract class TrapCrafting : MonoBehaviour
         if (_isCompleted == true || _craftingRoutine != null)
             return;
 
-        if ((_context.PlayerLayer.value & (1 << other.gameObject.layer)) == 0)
+        if ((_playerLayer.value & (1 << other.gameObject.layer)) == 0)
             return;
 
         _craftingRoutine = StartCoroutine(CraftingRoutine());
@@ -43,7 +45,7 @@ public abstract class TrapCrafting : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if ((_context.PlayerLayer.value & (1 << other.gameObject.layer)) == 0)
+        if ((_playerLayer.value & (1 << other.gameObject.layer)) == 0)
             return;
 
         if (_craftingRoutine == null)
@@ -52,7 +54,7 @@ public abstract class TrapCrafting : MonoBehaviour
         StopCoroutine(_craftingRoutine);
         _craftingRoutine = null;
         _craftingProgress = 0f;
-        _context.View.Hide();
+        _view.Hide();
     }
 
     private IEnumerator CraftingRoutine()
@@ -60,7 +62,7 @@ public abstract class TrapCrafting : MonoBehaviour
         while (_craftingProgress < CraftingTime)
         {
             _craftingProgress += Time.deltaTime;
-            _context.View.SetProgress(_craftingProgress / CraftingTime);
+            _view.SetProgress(_craftingProgress / CraftingTime);
 
             yield return null;
         }
@@ -72,8 +74,8 @@ public abstract class TrapCrafting : MonoBehaviour
     private void CompleteCrafting()
     {
         _isCompleted = true;
-        _context.View.Hide();
+        _view.Hide();
         _spriteRenderer.enabled = false;
-        _context.Spawner.Spawn(Prefab, transform);
+        _spawner.Spawn(_config.Prefab, transform);
     }
 }
