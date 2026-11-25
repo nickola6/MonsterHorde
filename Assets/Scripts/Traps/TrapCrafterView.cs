@@ -3,11 +3,12 @@ using UnityEngine.UI;
 
 public class TrapCrafterView : MonoBehaviour
 {
-    [SerializeField] private GameObject _visual;
-    [SerializeField] private Image _progressImage;
+    private Image _progressImage;
 
     private void Awake()
     {
+        _progressImage = GetComponentInChildren<Image>();
+
         HideProgress();
     }
 
@@ -25,6 +26,6 @@ public class TrapCrafterView : MonoBehaviour
 
     public void HideVisuals()
     {
-        _visual.SetActive(false);
+        gameObject.SetActive(false);
     }
 }
