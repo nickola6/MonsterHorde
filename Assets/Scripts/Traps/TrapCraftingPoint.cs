@@ -8,7 +8,7 @@ public class TrapCraftingPoint : MonoBehaviour
     private const float CraftingTime = 1.5f;
 
     [SerializeField] private TrapSpawner _spawner;
-    [SerializeField] private TrapCraftingView _view;
+    [SerializeField] private TrapCraftingView _craftingView;
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private TrapConfigSO _config;
 
@@ -29,7 +29,7 @@ public class TrapCraftingPoint : MonoBehaviour
 
         _craftingRoutine = null;
         _craftingProgress = 0f;
-        _view.Hide();
+        _craftingView.Hide();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -54,7 +54,7 @@ public class TrapCraftingPoint : MonoBehaviour
         StopCoroutine(_craftingRoutine);
         _craftingRoutine = null;
         _craftingProgress = 0f;
-        _view.Hide();
+        _craftingView.Hide();
     }
 
     private IEnumerator CraftingRoutine()
@@ -62,7 +62,7 @@ public class TrapCraftingPoint : MonoBehaviour
         while (_craftingProgress < CraftingTime)
         {
             _craftingProgress += Time.deltaTime;
-            _view.SetProgress(_craftingProgress / CraftingTime);
+            _craftingView.SetProgress(_craftingProgress / CraftingTime);
 
             yield return null;
         }
@@ -74,7 +74,7 @@ public class TrapCraftingPoint : MonoBehaviour
     private void CompleteCrafting()
     {
         _isCompleted = true;
-        _view.Hide();
+        _craftingView.Hide();
         _spriteRenderer.enabled = false;
         _spawner.Spawn(_config.Prefab, transform);
     }
