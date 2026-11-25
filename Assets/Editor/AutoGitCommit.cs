@@ -1,6 +1,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -10,6 +11,8 @@ using UnityEngine;
 public class AutoGitCommit
 {
     private const double Delay = 2d;
+    private const string WaitingKey = "AutoGitCommit.Waiting";
+    private const string NextSyncTimeKey = "AutoGitCommit.NextSyncTime";
 
     private static readonly string ScriptPath =
         Path.Combine(Directory.GetParent(Application.dataPath).FullName, "Tools", "SyncToGit.ps1");
@@ -21,6 +24,16 @@ public class AutoGitCommit
     static AutoGitCommit()
     {
         EditorSceneManager.sceneSaved += OnSceneSaved;
+
+        if (SessionState.GetBool(WaitingKey, false))
+        {
+            _isWaiting = true;
+            _nextSyncTime = double.Parse(
+                SessionState.GetString(NextSyncTimeKey, "0"),
+                CultureInfo.InvariantCulture);
+
+            EditorApplication.update += CheckSyncTime;
+        }
     }
 
     private static void OnSceneSaved(UnityEngine.SceneManagement.Scene scene)
@@ -31,12 +44,15 @@ public class AutoGitCommit
     internal static void RequestSync()
     {
         _nextSyncTime = EditorApplication.timeSinceStartup + Delay;
+        _isWaiting = true;
 
-        if (_isWaiting == false)
-        {
-            _isWaiting = true;
-            EditorApplication.update += CheckSyncTime;
-        }
+        SessionState.SetBool(WaitingKey, true);
+        SessionState.SetString(
+            NextSyncTimeKey,
+            _nextSyncTime.ToString(CultureInfo.InvariantCulture));
+
+        EditorApplication.update -= CheckSyncTime;
+        EditorApplication.update += CheckSyncTime;
     }
 
     private static void CheckSyncTime()
@@ -47,6 +63,9 @@ public class AutoGitCommit
         _isWaiting = false;
         EditorApplication.update -= CheckSyncTime;
 
+        SessionState.SetBool(WaitingKey, false);
+        SessionState.EraseString(NextSyncTimeKey);
+
         if (File.Exists(ScriptPath) == false)
         {
             UnityEngine.Debug.LogError($"AutoGitCommit: script not found: {ScriptPath}");
@@ -54,6 +73,7 @@ public class AutoGitCommit
         }
 
         _isRunning = true;
+        UnityEngine.Debug.Log("AutoGitCommit: starting PowerShell process.");
 
         ProcessStartInfo startInfo = new ProcessStartInfo
         {
@@ -75,9 +95,18 @@ public class AutoGitCommit
         process.ErrorDataReceived += OnErrorReceived;
         process.Exited += OnProcessExited;
 
-        process.Start();
-        process.BeginOutputReadLine();
-        process.BeginErrorReadLine();
+        try
+        {
+            process.Start();
+            process.BeginOutputReadLine();
+            process.BeginErrorReadLine();
+        }
+        catch (Exception exception)
+        {
+            process.Dispose();
+            _isRunning = false;
+            UnityEngine.Debug.LogError($"AutoGitCommit: {exception.Message}");
+        }
     }
 
     private static void OnOutputReceived(object sender, DataReceivedEventArgs args)
