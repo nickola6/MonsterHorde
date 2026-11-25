@@ -12,7 +12,7 @@ public class TrapCraftingPoint : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private float _craftingProgress;
     private bool _isPlayerInside;
-    public bool _isCompleted;
+    private bool _isCompleted;
 
     private void Awake()
     {
