@@ -1,3 +1,4 @@
+
 using System.Collections;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ public class TrapCraftingPoint : MonoBehaviour
     [SerializeField] private TrapSpawner _spawner;
     [SerializeField] private TrapCraftingView _view;
     [SerializeField] private LayerMask _playerLayer;
-    [SerializeField] private TrapConfigSO _scriptableObject;
+    [SerializeField] private TrapConfigSO _config;
 
     private SpriteRenderer _spriteRenderer;
     private Coroutine _craftingRoutine;
@@ -75,6 +76,6 @@ public class TrapCraftingPoint : MonoBehaviour
         _isCompleted = true;
         _view.Hide();
         _spriteRenderer.enabled = false;
-        _spawner.Spawn(_scriptableObject.Prefab, transform);
+        _spawner.Spawn(_config.Prefab, transform);
     }
 }
