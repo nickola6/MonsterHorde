@@ -6,7 +6,7 @@ public class TrapCraftingPoint : MonoBehaviour
 {
     [SerializeField] private TrapSpawner _spawner;
     [SerializeField] private TrapCraftingView _view;
-    [SerializeField] private TrapDefinitionSO _definition;
+    [SerializeField] private TrapConfigSO _definition;
     [SerializeField] private LayerMask _playerLayer;
 
     private float _craftingProgress;
