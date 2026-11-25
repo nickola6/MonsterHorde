@@ -11,6 +11,14 @@ public class Spikes : DamageTrap
 
     private bool _isBusy;
     private Coroutine _attackRoutine;
+    private SpriteRenderer _spriteRenderer;
+    private Color _originalColor;
+
+    private void Awake()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _originalColor = _spriteRenderer.color;
+    }
 
     private void OnDisable()
     {
