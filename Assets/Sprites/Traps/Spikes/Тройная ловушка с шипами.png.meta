@@ -4,13 +4,16 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 2466572479459402478
-    second: "\u0422\u0440\u043E\u0439\u043D\u0430\u044F \u043B\u043E\u0432\u0443\u0448\u043A\u0430 \u0441 \u0448\u0438\u043F\u0430\u043C\u0438_0"
+    second: "\u0422\u0440\u043E\u0439\u043D\u0430\u044F \u043B\u043E\u0432\u0443\u0448\u043A\u0430
+      \u0441 \u0448\u0438\u043F\u0430\u043C\u0438_0"
   - first:
       213: -365975013467291793
-    second: "\u0422\u0440\u043E\u0439\u043D\u0430\u044F \u043B\u043E\u0432\u0443\u0448\u043A\u0430 \u0441 \u0448\u0438\u043F\u0430\u043C\u0438_1"
+    second: "\u0422\u0440\u043E\u0439\u043D\u0430\u044F \u043B\u043E\u0432\u0443\u0448\u043A\u0430
+      \u0441 \u0448\u0438\u043F\u0430\u043C\u0438_1"
   - first:
       213: 3992827327563340709
-    second: "\u0422\u0440\u043E\u0439\u043D\u0430\u044F \u043B\u043E\u0432\u0443\u0448\u043A\u0430 \u0441 \u0448\u0438\u043F\u0430\u043C\u0438_2"
+    second: "\u0422\u0440\u043E\u0439\u043D\u0430\u044F \u043B\u043E\u0432\u0443\u0448\u043A\u0430
+      \u0441 \u0448\u0438\u043F\u0430\u043C\u0438_2"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -43,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -62,9 +65,7 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationMethod: 0
   spriteTessellationDetail: -1
-  spriteGeometrySubdivision: -1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -78,9 +79,9 @@ TextureImporter:
   swizzle: 50462976
   cookieLightType: 0
   platformSettings:
-  - serializedVersion: 4
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 128
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -91,7 +92,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -104,7 +105,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
+  - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -121,7 +122,8 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u0422\u0440\u043E\u0439\u043D\u0430\u044F \u043B\u043E\u0432\u0443\u0448\u043A\u0430 \u0441 \u0448\u0438\u043F\u0430\u043C\u0438_1"
+      name: "\u0422\u0440\u043E\u0439\u043D\u0430\u044F \u043B\u043E\u0432\u0443\u0448\u043A\u0430
+        \u0441 \u0448\u0438\u043F\u0430\u043C\u0438_1"
       rect:
         serializedVersion: 2
         x: 297
@@ -131,7 +133,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -143,7 +144,6 @@ TextureImporter:
       edges: []
       weights: []
     outline: []
-    customData: 
     physicsShape: []
     bones: []
     spriteID: 158b6b7244093fa49bbb96ecc9707248
@@ -153,8 +153,6 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    spriteCustomMetadata:
-      entries: []
     nameFileIdTable:
       "\u0422\u0440\u043E\u0439\u043D\u0430\u044F \u043B\u043E\u0432\u0443\u0448\u043A\u0430 \u0441 \u0448\u0438\u043F\u0430\u043C\u0438_0": 2466572479459402478
       "\u0422\u0440\u043E\u0439\u043D\u0430\u044F \u043B\u043E\u0432\u0443\u0448\u043A\u0430 \u0441 \u0448\u0438\u043F\u0430\u043C\u0438_1": -365975013467291793

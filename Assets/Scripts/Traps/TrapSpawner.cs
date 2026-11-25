@@ -2,11 +2,9 @@ using UnityEngine;
 
 public class TrapSpawner : MonoBehaviour
 {
-    [SerializeField] private TrapAppearance _trapPrefab;
-
-    public void Spawn(Transform spawnPoint)
+    public void Spawn(Trap prefab, Transform spawnPoint)
     {
-        TrapAppearance trap = Instantiate(_trapPrefab, spawnPoint.position, spawnPoint.rotation);
-        trap.Play();
+        Trap trap = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
+        trap.Activate();
     }
 }

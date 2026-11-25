@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Image))]
 public class TrapCraftingView : MonoBehaviour
 {
-    [SerializeField] private Image _progressImage;
+    private Image _progressImage;
 
     private void Awake()
     {
+        _progressImage = GetComponent<Image>();
         Hide();
     }
 
