@@ -1,4 +1,1 @@
-public class Bomb : Trap
-{
-    public override void Activate() { }
-}
+public class Bomb : Trap { }
