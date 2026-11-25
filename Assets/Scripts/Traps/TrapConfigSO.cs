@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "TrapDefinition", menuName = "Game/Trap Definition")]
+[CreateAssetMenu(fileName = "TrapConfig", menuName = "Game/Trap Config")]
 public class TrapConfigSO : ScriptableObject
 {
     [SerializeField] private Trap _prefab;

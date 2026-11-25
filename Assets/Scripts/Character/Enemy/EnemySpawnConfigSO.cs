@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemySpawnConfig", menuName = "Enemy Spawn Config")]
+[CreateAssetMenu(fileName = "EnemySpawnConfig", menuName = "Game/Enemy Spawn Config")]
 public class EnemySpawnConfigSO : ScriptableObject
 {
     [SerializeField] private Enemy _prefab;
