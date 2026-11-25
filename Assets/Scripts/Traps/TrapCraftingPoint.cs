@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
@@ -7,7 +8,7 @@ public class TrapCraftingPoint : MonoBehaviour
     [SerializeField] private TrapCraftingView _craftingView;
     [SerializeField] private TrapConfigSO _config;
 
-    private Collider2D _collider;
+    private BoxCollider2D _collider;
     private bool _isCompleted;
 
     private void Awake()
@@ -19,7 +20,9 @@ public class TrapCraftingPoint : MonoBehaviour
     private void OnDisable()
     {
         if (_isCompleted == true)
+        {
             return;
+        }
 
         _crafter.Cancel(this);
     }
@@ -27,7 +30,9 @@ public class TrapCraftingPoint : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (_isCompleted == true)
+        {
             return;
+        }
 
         _crafter.StartCrafting(this, _config, other);
     }
