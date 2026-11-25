@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ResourceSpawnConfig", menuName = "Resource Spawn Config")]
+[CreateAssetMenu(fileName = "ResourceSpawnConfig", menuName = "Game/Resource Spawn Config")]
 public class ResourceSpawnConfigSO : ScriptableObject
 {
     [SerializeField] private Resource _prefab;
