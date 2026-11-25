@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5868bb0f05cd6bf469ac7420ea1354e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageableArea: {fileID: 0}
+  _damageableArea: {fileID: 783301406341984524}
   _lineOfSight: {fileID: 7158081207136670185}
   _weapon: {fileID: 1624966596246929798}
 --- !u!114 &724953929337626096
