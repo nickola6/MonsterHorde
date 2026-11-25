@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class TrapCraftingPoint : MonoBehaviour
 {
-    [SerializeField] private TrapSpawner _spawnersdsd;
+    [SerializeField] private TrapSpawner _spawner;
     [SerializeField] private TrapCraftingView _view;
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private Trap _trapPrefab;
@@ -56,6 +56,6 @@ public class TrapCraftingPoint : MonoBehaviour
         _isPlayerInside = false;
         _view.Hide();
         _spriteRenderer.enabled = false;
-        _spawnersdsd.Spawn(_trapPrefab, transform);
+        _spawner.Spawn(_trapPrefab, transform);
     }
 }
