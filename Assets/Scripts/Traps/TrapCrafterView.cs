@@ -4,7 +4,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(TrapCraftingPoint))]
 public class TrapCrafterView : MonoBehaviour
 {
-    [SerializeField] private GameObject _visuals;
+    [SerializeField] private GameObject _visual;
     [SerializeField] private Image _progressImage;
 
     private void Awake()
@@ -26,6 +26,6 @@ public class TrapCrafterView : MonoBehaviour
 
     public void HideVisuals()
     {
-        _visuals.SetActive(false);
+        _visual.SetActive(false);
     }
 }
