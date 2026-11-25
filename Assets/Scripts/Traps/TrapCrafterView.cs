@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(TrapCraftingPoint))]
+[RequireComponent(typeof(TrapCrafterPoint))]
 public class TrapCrafterView : MonoBehaviour
 {
     [SerializeField] private GameObject _visual;

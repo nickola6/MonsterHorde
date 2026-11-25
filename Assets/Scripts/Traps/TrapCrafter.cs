@@ -9,11 +9,11 @@ public class TrapCrafter : MonoBehaviour
     [SerializeField] private LayerMask _playerLayer;
 
     private Coroutine _craftingRoutine;
-    private TrapCraftingPoint _activePoint;
+    private TrapCrafterPoint _activePoint;
     private TrapConfigSO _activeConfig;
     private float _craftingProgress;
 
-    public void StartCrafting(TrapCraftingPoint point, TrapConfigSO config, Collider2D other)
+    public void StartCrafting(TrapCrafterPoint point, TrapConfigSO config, Collider2D other)
     {
         if ((_playerLayer.value & (1 << other.gameObject.layer)) == 0)
             return;
@@ -26,7 +26,7 @@ public class TrapCrafter : MonoBehaviour
         _craftingRoutine = StartCoroutine(CraftingRoutine());
     }
 
-    public void StopCrafting(TrapCraftingPoint point, Collider2D other)
+    public void StopCrafting(TrapCrafterPoint point, Collider2D other)
     {
         if ((_playerLayer.value & (1 << other.gameObject.layer)) == 0)
             return;
@@ -37,7 +37,7 @@ public class TrapCrafter : MonoBehaviour
         CancelCrafting();
     }
 
-    public void Cancel(TrapCraftingPoint point)
+    public void Cancel(TrapCrafterPoint point)
     {
         if (_activePoint != point || _craftingRoutine == null)
             return;
