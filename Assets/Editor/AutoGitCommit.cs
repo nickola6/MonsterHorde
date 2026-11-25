@@ -23,8 +23,6 @@ public class AutoGitCommit
 
     private static void OnSceneSaved(UnityEngine.SceneManagement.Scene scene)
     {
-        UnityEngine.Debug.Log("AutoGitCommit: sceneSaved event received.");
-
         _nextSyncTime = EditorApplication.timeSinceStartup + Delay;
 
         if (_isWaiting == false)
@@ -49,6 +47,7 @@ public class AutoGitCommit
         }
 
         _isRunning = true;
+        UnityEngine.Debug.Log("AutoGitCommit: starting PowerShell process.");
 
         ProcessStartInfo startInfo = new ProcessStartInfo
         {
