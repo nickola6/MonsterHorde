@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -16,7 +17,6 @@ public class TrapCraftingPoint : MonoBehaviour
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _spriteRenderer.sprite = _definition.Icon;
     }
 
     private void Update()
