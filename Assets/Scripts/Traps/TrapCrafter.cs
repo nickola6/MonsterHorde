@@ -73,6 +73,30 @@ public class TrapCrafter : MonoBehaviour
 
     private void CompleteCrafting()
     {
+        if (_activePoint == null)
+        {
+            Debug.LogError("TrapCrafter: ActivePoint is null.");
+            return;
+        }
+
+        if (_activeConfig == null)
+        {
+            Debug.LogError("TrapCrafter: ActiveConfig is null.");
+            return;
+        }
+
+        if (_spawner == null)
+        {
+            Debug.LogError("TrapCrafter: Spawner is not assigned.");
+            return;
+        }
+
+        if (_activeConfig.Prefab == null)
+        {
+            Debug.LogError("TrapCrafter: Prefab is not assigned in TrapConfigSO.");
+            return;
+        }
+
         _activePoint.Complete();
         _spawner.Spawn(_activeConfig.Prefab, _activePoint.transform);
 
