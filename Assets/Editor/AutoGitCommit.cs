@@ -1,3 +1,5 @@
+
+using System;
 using System.Diagnostics;
 using System.IO;
 using UnityEditor;
@@ -22,6 +24,11 @@ public class AutoGitCommit
     }
 
     private static void OnSceneSaved(UnityEngine.SceneManagement.Scene scene)
+    {
+        RequestSync();
+    }
+
+    internal static void RequestSync()
     {
         _nextSyncTime = EditorApplication.timeSinceStartup + Delay;
 
@@ -85,7 +92,7 @@ public class AutoGitCommit
             UnityEngine.Debug.LogError($"AutoGitCommit: {args.Data}");
     }
 
-    private static void OnProcessExited(object sender, System.EventArgs args)
+    private static void OnProcessExited(object sender, EventArgs args)
     {
         Process process = (Process)sender;
         int exitCode = process.ExitCode;

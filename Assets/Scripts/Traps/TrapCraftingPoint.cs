@@ -12,7 +12,7 @@ public class TrapCraftingPoint : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private float _craftingProgress;
     private bool _isPlayerInside;
-    private bool sdfsdf;
+    private bool _isCompleted;
 
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class TrapCraftingPoint : MonoBehaviour
 
     private void Update()
     {
-        if (_isPlayerInside == false || sdfsdf == true)
+        if (_isPlayerInside == false || _isCompleted == true)
             return;
 
         _craftingProgress += Time.deltaTime;
@@ -52,7 +52,7 @@ public class TrapCraftingPoint : MonoBehaviour
 
     private void CompleteCrafting()
     {
-        sdfsdf = true;
+        _isCompleted = true;
         _isPlayerInside = false;
         _view.Hide();
         _spriteRenderer.enabled = false;
