@@ -3,15 +3,16 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class TrapCraftingPoint : MonoBehaviour
 {
-    [SerializeField] private TrapCrafter _crafter;
     [SerializeField] private TrapConfigSO _config;
 
+    private TrapCrafter _crafter;
     private Collider2D _collider;
     private TrapCraftingView _craftingView;
     private bool _isCompleted;
 
     private void Awake()
     {
+        _crafter = GetComponentInParent<TrapCrafter>();
         _collider = GetComponent<BoxCollider2D>();
         _craftingView = GetComponentInChildren<TrapCraftingView>();
 
