@@ -3,12 +3,10 @@ using UnityEngine.UI;
 
 public class TrapCraftingView : MonoBehaviour
 {
-    private Image _progressImage;
+    [SerializeField] private Image _progressImage;
 
     private void Awake()
     {
-        _progressImage = GetComponentInChildren<Image>();
-
         HideProgress();
     }
 
