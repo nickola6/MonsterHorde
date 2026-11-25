@@ -1,25 +1,27 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
-[RequireComponent(typeof(TrapCrafterView))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class TrapCraftingPoint : MonoBehaviour
 {
-    [SerializeField] private TrapCrafter _crafting;
+    [SerializeField] private TrapCrafter _crafter;
     [SerializeField] private TrapConfigSO _config;
+    [SerializeField] private TrapCrafterView _visual;
 
     private Collider2D _collider;
-    private TrapCrafterView _view;
+    private TrapCrafterView _craftingView;
     private bool _isCompleted;
 
     private void Awake()
     {
         _collider = GetComponent<Collider2D>();
-        _view = GetComponent<TrapCrafterView>();
+        _craftingView = GetComponent<TrapCrafterView>();
+
+        _collider.isTrigger = true;
     }
 
     private void OnDisable()
     {
-        _crafting.Cancel(this);
+        _crafter.Cancel(this);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -27,28 +29,28 @@ public class TrapCraftingPoint : MonoBehaviour
         if (_isCompleted == true)
             return;
 
-        _crafting.StartCrafting(this, _config, other);
+        _crafter.StartCrafting(this, _config, other);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        _crafting.StopCrafting(this, other);
+        _crafter.StopCrafting(this, other);
     }
 
     public void SetProgress(float progress)
     {
-        _view.SetProgress(progress);
+        _craftingView.SetProgress(progress);
     }
 
     public void ResetProgress()
     {
-        _view.HideProgress();
+        _craftingView.HideProgress();
     }
 
     public void Complete()
     {
         _isCompleted = true;
         _collider.enabled = false;
-        _view.HideVisuals();
+        _craftingView.HideVisuals();
     }
 }
