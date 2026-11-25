@@ -3,8 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class TrapCraftingPoint : MonoBehaviour
 {
-    [SerializeField]private TrapCrafter _crafter;
-    [SerializeField]private TrapCraftingView _craftingView;
+    [SerializeField] private TrapCrafter _crafter;
+    [SerializeField] private TrapCraftingView _craftingView;
     [SerializeField] private TrapConfigSO _config;
 
     private Collider2D _collider;
