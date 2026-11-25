@@ -6,8 +6,7 @@ public class TrapCraftingPoint : MonoBehaviour
     [SerializeField] private TrapSpawner _spawner;
     [SerializeField] private TrapCraftingView _view;
     [SerializeField] private LayerMask _playerLayer;
-    [SerializeField] private Trap _trapPrefab;
-    [SerializeField] private float _craftingTime = 1.5f;
+    [SerializeField] private TrapDefinitionSO _definition;
 
     private SpriteRenderer _spriteRenderer;
     private float _craftingProgress;
@@ -17,9 +16,7 @@ public class TrapCraftingPoint : MonoBehaviour
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-
-        if (_craftingTime <= 0f)
-            throw new System.ArgumentOutOfRangeException(nameof(_craftingTime));
+        _spriteRenderer.sprite = _definition.Icon;
     }
 
     private void Update()
@@ -28,9 +25,9 @@ public class TrapCraftingPoint : MonoBehaviour
             return;
 
         _craftingProgress += Time.deltaTime;
-        _view.SetProgress(_craftingProgress / _craftingTime);
+        _view.SetProgress(_craftingProgress / _definition.CraftingTime);
 
-        if (_craftingProgress >= _craftingTime)
+        if (_craftingProgress >= _definition.CraftingTime)
             CompleteCrafting();
     }
 
@@ -56,6 +53,6 @@ public class TrapCraftingPoint : MonoBehaviour
         _isPlayerInside = false;
         _view.Hide();
         _spriteRenderer.enabled = false;
-        _spawner.Spawn(_trapPrefab, transform);
+        _spawner.Spawn(_definition.Prefab, transform);
     }
 }
