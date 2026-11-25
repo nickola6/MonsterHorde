@@ -18,6 +18,9 @@ public class TrapCraftingPoint : MonoBehaviour
 
     private void OnDisable()
     {
+        if (_isCompleted == true)
+            return;
+
         _crafter.Cancel(this);
     }
 
