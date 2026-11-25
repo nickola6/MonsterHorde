@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 
@@ -9,8 +8,8 @@ public class TrapCraftingPoint : MonoBehaviour
 
     [SerializeField] private TrapSpawner _spawner;
     [SerializeField] private TrapCraftingView _craftingView;
-    [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private TrapConfigSO _config;
+    [SerializeField] private LayerMask _playerLayer;
 
     private SpriteRenderer _spriteRenderer;
     private Coroutine _craftingRoutine;
