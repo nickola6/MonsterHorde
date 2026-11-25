@@ -4,14 +4,15 @@ public class TrapSpawner : MonoBehaviour
 {
     public void Spawn(Trap prefab, Transform spawnPoint)
     {
-        Debug.Log("Spawn: Before Instantiate");
+        Debug.Log($"Spawner: Prefab = {prefab}");
+        Debug.Log($"Spawner: SpawnPoint = {spawnPoint}");
 
         Trap trap = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
 
-        Debug.Log("Spawn: After Instantiate");
+        Debug.Log($"Spawner: Created trap = {trap}");
 
         trap.Activate();
 
-        Debug.Log("Spawn: After Activate");
+        Debug.Log("Spawner: Activated");
     }
 }
