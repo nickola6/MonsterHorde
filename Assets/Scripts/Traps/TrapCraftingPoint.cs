@@ -5,7 +5,6 @@ public class TrapCraftingPoint : MonoBehaviour
 {
     [SerializeField] private TrapCrafter _crafter;
     [SerializeField] private TrapConfigSO _config;
-    [SerializeField] private TrapCraftingView _visual;
 
     private Collider2D _collider;
     private TrapCraftingView _craftingView;
@@ -13,8 +12,8 @@ public class TrapCraftingPoint : MonoBehaviour
 
     private void Awake()
     {
-        _collider = GetComponent<Collider2D>();
-        _craftingView = GetComponent<TrapCraftingView>();
+        _collider = GetComponent<BoxCollider2D>();
+        _craftingView = GetComponentInChildren<TrapCraftingView>();
 
         _collider.isTrigger = true;
     }
