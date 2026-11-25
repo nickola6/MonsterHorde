@@ -51,4 +51,17 @@ public class DamageableArea : DetectionArea
     {
         _colliders.Remove(other);
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (TryGetComponent<CircleCollider2D>(out var circle) == false)
+            return;
+
+        Gizmos.color = Color.cyan;
+
+        Matrix4x4 previousMatrix = Gizmos.matrix;
+        Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.DrawWireSphere(circle.offset, circle.radius);
+        Gizmos.matrix = previousMatrix;
+    }
 }
