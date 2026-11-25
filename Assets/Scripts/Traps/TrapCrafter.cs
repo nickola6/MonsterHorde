@@ -12,15 +12,18 @@ public class TrapCrafter : MonoBehaviour
     private Coroutine _craftingRoutine;
     private TrapCraftingPoint _activePoint;
     private TrapConfigSO _activeConfig;
-    private float _craftingProgress;
 
     public void StartCrafting(TrapCraftingPoint point, TrapConfigSO config, Collider2D other)
     {
         if ((_playerLayer.value & (1 << other.gameObject.layer)) == 0)
+        {
             return;
+        }
 
         if (_craftingRoutine != null)
+        {
             return;
+        }
 
         _activePoint = point;
         _activeConfig = config;
@@ -30,10 +33,14 @@ public class TrapCrafter : MonoBehaviour
     public void StopCrafting(TrapCraftingPoint point, Collider2D other)
     {
         if ((_playerLayer.value & (1 << other.gameObject.layer)) == 0)
+        {
             return;
+        }
 
         if (_activePoint != point || _craftingRoutine == null)
+        {
             return;
+        }
 
         CancelCrafting();
     }
@@ -41,29 +48,26 @@ public class TrapCrafter : MonoBehaviour
     public void Cancel(TrapCraftingPoint point)
     {
         if (_activePoint != point || _craftingRoutine == null)
+        {
             return;
+        }
 
         CancelCrafting();
     }
 
     private void OnDisable()
     {
-        if (_craftingRoutine != null)
-            StopCoroutine(_craftingRoutine);
-
-        _craftingRoutine = null;
-        _activePoint?.ResetProgress();
-        _activePoint = null;
-        _activeConfig = null;
-        _craftingProgress = 0f;
+        CancelCrafting();
     }
 
     private IEnumerator CraftingRoutine()
     {
-        while (_craftingProgress < CraftingTime)
+        float elapsedTime = 0f;
+
+        while (elapsedTime < CraftingTime)
         {
-            _craftingProgress += Time.deltaTime;
-            _activePoint.SetProgress(_craftingProgress / CraftingTime);
+            elapsedTime += Time.deltaTime;
+            _activePoint.SetProgress(elapsedTime / CraftingTime);
 
             yield return null;
         }
@@ -74,33 +78,9 @@ public class TrapCrafter : MonoBehaviour
 
     private void CompleteCrafting()
     {
-        if (_activePoint == null)
-        {
-            Debug.LogError("TrapCrafter: ActivePoint is null.");
-            return;
-        }
-
-        if (_activeConfig == null)
-        {
-            Debug.LogError("TrapCrafter: ActiveConfig is null.");
-            return;
-        }
-
-        if (_spawner == null)
-        {
-            Debug.LogError("TrapCrafter: Spawner is not assigned.");
-            return;
-        }
-
         TrapCraftingPoint point = _activePoint;
         TrapConfigSO config = _activeConfig;
         TrapSpawner spawner = _spawner;
-
-        if (config.Prefab == null)
-        {
-            Debug.LogError("TrapCrafter: Prefab is not assigned.");
-            return;
-        }
 
         Trap prefab = config.Prefab;
         Transform spawnPoint = point.transform;
@@ -108,19 +88,25 @@ public class TrapCrafter : MonoBehaviour
         point.Complete();
         spawner.Spawn(prefab, spawnPoint);
 
-        _activePoint = null;
-        _activeConfig = null;
-        _craftingProgress = 0f;
+        ClearState();
     }
 
     private void CancelCrafting()
     {
-        StopCoroutine(_craftingRoutine);
+        if (_craftingRoutine != null)
+        {
+            StopCoroutine(_craftingRoutine);
+        }
 
         _craftingRoutine = null;
-        _activePoint.ResetProgress();
+        _activePoint?.ResetProgress();
+
+        ClearState();
+    }
+
+    private void ClearState()
+    {
         _activePoint = null;
         _activeConfig = null;
-        _craftingProgress = 0f;
     }
 }
