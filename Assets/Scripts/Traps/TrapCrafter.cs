@@ -97,8 +97,13 @@ public class TrapCrafter : MonoBehaviour
             return;
         }
 
+        Debug.Log("TrapCrafter: Calling Complete()");
         _activePoint.Complete();
+
+        Debug.Log("TrapCrafter: Calling Spawn()");
         _spawner.Spawn(_activeConfig.Prefab, _activePoint.transform);
+
+        Debug.Log("TrapCrafter: Crafting completed");
 
         _activePoint = null;
         _activeConfig = null;
