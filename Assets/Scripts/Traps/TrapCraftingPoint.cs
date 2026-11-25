@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(TrapCraftingView))]
 public class TrapCraftingPoint : MonoBehaviour
 {
-    [SerializeField] private TrapCrafting _crafting;
+    [SerializeField] private TrapCrafter _crafting;
     [SerializeField] private TrapConfigSO _config;
 
     private Collider2D _collider;
