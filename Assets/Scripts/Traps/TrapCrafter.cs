@@ -92,29 +92,21 @@ public class TrapCrafter : MonoBehaviour
             return;
         }
 
-        if (_activeConfig.Prefab == null)
+        TrapCraftingPoint point = _activePoint;
+        TrapConfigSO config = _activeConfig;
+        TrapSpawner spawner = _spawner;
+
+        if (config.Prefab == null)
         {
-            Debug.LogError("TrapCrafter: Prefab is not assigned in TrapConfigSO.");
+            Debug.LogError("TrapCrafter: Prefab is not assigned.");
             return;
         }
 
-        Debug.Log("TrapCrafter: Calling Complete()");
-        _activePoint.Complete();
+        Trap prefab = config.Prefab;
+        Transform spawnPoint = point.transform;
 
-        Debug.Log("TrapCrafter: Calling Spawn()");
-        Debug.Log($"Spawner: {_spawner}");
-        Debug.Log($"ActivePoint: {_activePoint}");
-        Debug.Log($"ActiveConfig: {_activeConfig}");
-
-        Trap prefab = _activeConfig.Prefab;
-        Debug.Log($"Prefab: {prefab}");
-
-        Transform spawnPoint = _activePoint.transform;
-        Debug.Log($"SpawnPoint: {spawnPoint}");
-
-        _spawner.Spawn(prefab, spawnPoint);
-
-        Debug.Log("TrapCrafter: Crafting completed");
+        point.Complete();
+        spawner.Spawn(prefab, spawnPoint);
 
         _activePoint = null;
         _activeConfig = null;
