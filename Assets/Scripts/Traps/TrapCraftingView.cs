@@ -1,15 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Image))]
+[RequireComponent(typeof(TrapCraftingPoint))]
 public class TrapCraftingView : MonoBehaviour
 {
-    private Image _progressImage;
+    [SerializeField] private GameObject _visuals;
+    [SerializeField] private Image _progressImage;
 
     private void Awake()
     {
-        _progressImage = GetComponent<Image>();
-        Hide();
+        HideProgress();
     }
 
     public void SetProgress(float progress)
@@ -18,9 +18,14 @@ public class TrapCraftingView : MonoBehaviour
         _progressImage.enabled = true;
     }
 
-    public void Hide()
+    public void HideProgress()
     {
         _progressImage.fillAmount = 0f;
         _progressImage.enabled = false;
+    }
+
+    public void HideVisuals()
+    {
+        _visuals.SetActive(false);
     }
 }

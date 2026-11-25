@@ -1,80 +1,54 @@
-using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(TrapCraftingView))]
 public class TrapCraftingPoint : MonoBehaviour
 {
-    private const float CraftingTime = 1.5f;
-
-    [SerializeField] private TrapSpawner _spawner;
-    [SerializeField] private TrapCraftingView _craftingView;
+    [SerializeField] private TrapCrafting _crafting;
     [SerializeField] private TrapConfigSO _config;
-    [SerializeField] private LayerMask _playerLayer;
 
-    private SpriteRenderer _spriteRenderer;
-    private Coroutine _craftingRoutine;
-    private float _craftingProgress;
+    private Collider2D _collider;
+    private TrapCraftingView _view;
     private bool _isCompleted;
 
     private void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _collider = GetComponent<Collider2D>();
+        _view = GetComponent<TrapCraftingView>();
     }
 
     private void OnDisable()
     {
-        if (_craftingRoutine != null)
-            StopCoroutine(_craftingRoutine);
-
-        _craftingRoutine = null;
-        _craftingProgress = 0f;
-        _craftingView.Hide();
+        _crafting.Cancel(this);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (_isCompleted == true || _craftingRoutine != null)
+        if (_isCompleted == true)
             return;
 
-        if ((_playerLayer.value & (1 << other.gameObject.layer)) == 0)
-            return;
-
-        _craftingRoutine = StartCoroutine(CraftingRoutine());
+        _crafting.StartCrafting(this, _config, other);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if ((_playerLayer.value & (1 << other.gameObject.layer)) == 0)
-            return;
-
-        if (_craftingRoutine == null)
-            return;
-
-        StopCoroutine(_craftingRoutine);
-        _craftingRoutine = null;
-        _craftingProgress = 0f;
-        _craftingView.Hide();
+        _crafting.StopCrafting(this, other);
     }
 
-    private IEnumerator CraftingRoutine()
+    public void SetProgress(float progress)
     {
-        while (_craftingProgress < CraftingTime)
-        {
-            _craftingProgress += Time.deltaTime;
-            _craftingView.SetProgress(_craftingProgress / CraftingTime);
-
-            yield return null;
-        }
-
-        CompleteCrafting();
-        _craftingRoutine = null;
+        _view.SetProgress(progress);
     }
 
-    private void CompleteCrafting()
+    public void ResetProgress()
+    {
+        _view.HideProgress();
+    }
+
+    public void Complete()
     {
         _isCompleted = true;
-        _craftingView.Hide();
-        _spriteRenderer.enabled = false;
-        _spawner.Spawn(_config.Prefab, transform);
+        _collider.enabled = false;
+        _view.HideVisuals();
     }
 }
