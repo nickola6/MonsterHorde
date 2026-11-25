@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(TrapCrafterView))]
 public class TrapCrafterPoint : MonoBehaviour
 {
