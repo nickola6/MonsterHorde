@@ -47,7 +47,6 @@ public class AutoGitCommit
         }
 
         _isRunning = true;
-        UnityEngine.Debug.Log("AutoGitCommit: starting PowerShell process.");
 
         ProcessStartInfo startInfo = new ProcessStartInfo
         {

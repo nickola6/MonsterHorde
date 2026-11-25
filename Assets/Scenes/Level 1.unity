@@ -874,6 +874,7 @@ MonoBehaviour:
     m_Bits: 64
   _trapPrefab: {fileID: 1239402967920509829, guid: b88d38d8659a8b04e9ac114bbaa7d000, type: 3}
   _craftingTime: 1.5
+  _isCompleted: 0
 --- !u!212 &315310909
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1025,6 +1026,7 @@ MonoBehaviour:
     m_Bits: 64
   _trapPrefab: {fileID: 4119725812508346629, guid: 4518a0804d1e0ec4c834cdcc79822641, type: 3}
   _craftingTime: 1.5
+  _isCompleted: 0
 --- !u!212 &456027624
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1397,6 +1399,7 @@ MonoBehaviour:
     m_Bits: 64
   _trapPrefab: {fileID: 9119399972391107062, guid: d1cc2c7096721734a9d71720c3672de4, type: 3}
   _craftingTime: 1.5
+  _isCompleted: 0
 --- !u!212 &637895997
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3230,6 +3233,7 @@ MonoBehaviour:
     m_Bits: 64
   _trapPrefab: {fileID: 5100841594046852172, guid: f5e0a70f4b4469243b2273488d4f54a4, type: 3}
   _craftingTime: 1.5
+  _isCompleted: 0
 --- !u!212 &1548391188
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4642,7 +4646,7 @@ Transform:
   m_GameObject: {fileID: 3993595017691983365}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.57, y: -2.47, z: 0}
+  m_LocalPosition: {x: -1.87, y: -1.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
