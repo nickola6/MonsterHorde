@@ -1,7 +1,6 @@
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(TrapCrafterView))]
 public class TrapCrafterPoint : MonoBehaviour
 {
     [SerializeField] private TrapCrafter _crafter;
