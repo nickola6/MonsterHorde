@@ -1,20 +1,20 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-[RequireComponent(typeof(TrapCraftingView))]
+[RequireComponent(typeof(TrapCrafterView))]
 public class TrapCraftingPoint : MonoBehaviour
 {
     [SerializeField] private TrapCrafter _crafting;
     [SerializeField] private TrapConfigSO _config;
 
     private Collider2D _collider;
-    private TrapCraftingView _view;
+    private TrapCrafterView _view;
     private bool _isCompleted;
 
     private void Awake()
     {
         _collider = GetComponent<Collider2D>();
-        _view = GetComponent<TrapCraftingView>();
+        _view = GetComponent<TrapCrafterView>();
     }
 
     private void OnDisable()
