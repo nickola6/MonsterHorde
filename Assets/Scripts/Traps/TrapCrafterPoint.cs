@@ -5,6 +5,7 @@ public class TrapCrafterPoint : MonoBehaviour
 {
     [SerializeField] private TrapCrafter _crafter;
     [SerializeField] private TrapConfigSO _config;
+    [SerializeField] private TrapCrafterView _visual;
 
     private Collider2D _collider;
     private TrapCrafterView _crafterView;
