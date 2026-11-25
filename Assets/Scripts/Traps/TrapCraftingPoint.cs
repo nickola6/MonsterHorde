@@ -5,16 +5,16 @@ public class TrapCraftingPoint : MonoBehaviour
 {
     [SerializeField] private TrapCrafter _crafter;
     [SerializeField] private TrapConfigSO _config;
-    [SerializeField] private TrapCrafterView _visual;
+    [SerializeField] private TrapCraftingView _visual;
 
     private Collider2D _collider;
-    private TrapCrafterView _craftingView;
+    private TrapCraftingView _craftingView;
     private bool _isCompleted;
 
     private void Awake()
     {
         _collider = GetComponent<Collider2D>();
-        _craftingView = GetComponent<TrapCrafterView>();
+        _craftingView = GetComponent<TrapCraftingView>();
 
         _collider.isTrigger = true;
     }
