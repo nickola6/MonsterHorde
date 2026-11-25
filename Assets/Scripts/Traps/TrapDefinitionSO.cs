@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TrapDefinitionSO : MonoBehaviour
+[CreateAssetMenu(fileName = "TrapDefinition", menuName = "Game/Traps/Trap Definition")]
+public class TrapDefinitionSO : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Trap _prefab;
+    [SerializeField] private Sprite _icon;
+    [SerializeField] private float _craftingTime = 1.5f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Trap Prefab => _prefab;
+    public Sprite Icon => _icon;
+    public float CraftingTime => _craftingTime;
 }
