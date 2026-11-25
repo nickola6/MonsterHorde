@@ -1,3 +1,4 @@
+
 using System.Collections;
 using UnityEngine;
 
@@ -14,7 +15,9 @@ public class Spikes : DamageTrap
     private void OnDisable()
     {
         if (_attackRoutine != null)
+        {
             StopCoroutine(_attackRoutine);
+        }
 
         _attackRoutine = null;
         _isBusy = false;
@@ -33,20 +36,28 @@ public class Spikes : DamageTrap
     private void TryActivate(Collider2D other)
     {
         if (_isBusy == true)
+        {
             return;
+        }
 
         if (TargetFilter.Contains(other.gameObject) == false)
+        {
             return;
+        }
 
         IDamageable target = other.GetComponent<IDamageable>();
 
         if (target == null)
+        {
             return;
+        }
 
         Component targetComponent = target as Component;
 
         if (targetComponent == null)
+        {
             return;
+        }
 
         _isBusy = true;
         _attackRoutine = StartCoroutine(AttackRoutine(target, targetComponent));
@@ -63,7 +74,9 @@ public class Spikes : DamageTrap
             remainingHits--;
 
             if (remainingHits > 0)
+            {
                 yield return hitWait;
+            }
         }
 
         yield return new WaitForSeconds(Cooldown);
