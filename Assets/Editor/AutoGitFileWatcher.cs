@@ -1,4 +1,3 @@
-
 using System.IO;
 using System.Threading;
 using UnityEditor;
@@ -7,8 +6,7 @@ using UnityEngine;
 [InitializeOnLoad]
 public class AutoGitFileWatcher
 {
-    private static readonly string ScriptsPath =
-        Path.Combine(Application.dataPath, "Scripts");
+    private static readonly string ScriptsPath = Path.Combine(Application.dataPath, "Scripts");
 
     private static FileSystemWatcher _watcher;
     private static int _hasChanges;
@@ -25,10 +23,7 @@ public class AutoGitFileWatcher
     private static void InitializeWatcher()
     {
         if (Directory.Exists(ScriptsPath) == false)
-        {
-            Debug.LogError($"AutoGitFileWatcher: folder not found: {ScriptsPath}");
             return;
-        }
 
         _watcher = new FileSystemWatcher
         {
@@ -38,7 +33,7 @@ public class AutoGitFileWatcher
             NotifyFilter = NotifyFilters.LastWrite |
                            NotifyFilters.FileName |
                            NotifyFilters.Size,
-            EnableRaisingEvents = true
+            EnableRaisingEvents = false
         };
 
         _watcher.Changed += OnFileChanged;
@@ -46,24 +41,16 @@ public class AutoGitFileWatcher
         _watcher.Deleted += OnFileChanged;
         _watcher.Renamed += OnFileRenamed;
 
-        Debug.Log("AutoGitFileWatcher: monitoring started.");
-        _watcher.Error += OnWatcherError;
-    }
-
-    private static void OnWatcherError(object sender, ErrorEventArgs args)
-    {
-        Debug.LogError($"FileWatcher error: {args.GetException()}");
+        _watcher.EnableRaisingEvents = true;
     }
 
     private static void OnFileChanged(object sender, FileSystemEventArgs args)
     {
-        Debug.Log($"FileWatcher: {args.ChangeType}: {args.FullPath}");
         Interlocked.Exchange(ref _hasChanges, 1);
     }
 
     private static void OnFileRenamed(object sender, RenamedEventArgs args)
     {
-        Debug.Log($"FileWatcher: Renamed: {args.FullPath}");
         Interlocked.Exchange(ref _hasChanges, 1);
     }
 
@@ -71,8 +58,6 @@ public class AutoGitFileWatcher
     {
         if (Interlocked.Exchange(ref _hasChanges, 0) == 0)
             return;
-
-        Debug.Log("AutoGitFileWatcher: script change detected.");
 
         AutoGitCommit.RequestSync();
     }
