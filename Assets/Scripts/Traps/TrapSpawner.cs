@@ -1,18 +1,18 @@
+
 using UnityEngine;
 
 public class TrapSpawner : MonoBehaviour
 {
     public void Spawn(Trap prefab, Transform spawnPoint)
     {
-        Debug.Log($"Spawner: Prefab = {prefab}");
-        Debug.Log($"Spawner: SpawnPoint = {spawnPoint}");
+        Debug.Log("TrapSpawner: Before Instantiate");
 
         Trap trap = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
 
-        Debug.Log($"Spawner: Created trap = {trap}");
+        Debug.Log("TrapSpawner: After Instantiate");
 
         trap.Activate();
 
-        Debug.Log("Spawner: Activated");
+        Debug.Log("TrapSpawner: After Activate");
     }
 }

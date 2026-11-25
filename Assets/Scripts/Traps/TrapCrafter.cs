@@ -1,3 +1,4 @@
+
 using System.Collections;
 using UnityEngine;
 
@@ -101,7 +102,17 @@ public class TrapCrafter : MonoBehaviour
         _activePoint.Complete();
 
         Debug.Log("TrapCrafter: Calling Spawn()");
-        _spawner.Spawn(_activeConfig.Prefab, _activePoint.transform);
+        Debug.Log($"Spawner: {_spawner}");
+        Debug.Log($"ActivePoint: {_activePoint}");
+        Debug.Log($"ActiveConfig: {_activeConfig}");
+
+        Trap prefab = _activeConfig.Prefab;
+        Debug.Log($"Prefab: {prefab}");
+
+        Transform spawnPoint = _activePoint.transform;
+        Debug.Log($"SpawnPoint: {spawnPoint}");
+
+        _spawner.Spawn(prefab, spawnPoint);
 
         Debug.Log("TrapCrafter: Crafting completed");
 
