@@ -15,6 +15,8 @@ public class TrapCrafterPoint : MonoBehaviour
     {
         _collider = GetComponent<Collider2D>();
         _crafterView = GetComponent<TrapCrafterView>();
+
+        _collider.isTrigger = true;
     }
 
     private void OnDisable()
