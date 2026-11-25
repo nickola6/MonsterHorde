@@ -906,6 +906,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c0bbad1d48ae94cabae70067130758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _crafter: {fileID: 1299032988}
+  _craftingView: {fileID: 1554331691}
   _config: {fileID: 11400000, guid: 78ebf58d90976844099f560126a4ce4b, type: 2}
 --- !u!1 &456027620
 GameObject:
@@ -1051,6 +1053,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c0bbad1d48ae94cabae70067130758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _crafter: {fileID: 1299032988}
+  _craftingView: {fileID: 2106678308}
   _config: {fileID: 11400000, guid: af9329f8b91e3fc41bd46ed322fa2b5e, type: 2}
 --- !u!1 &465505225
 GameObject:
@@ -1417,6 +1421,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c0bbad1d48ae94cabae70067130758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _crafter: {fileID: 1299032988}
+  _craftingView: {fileID: 1519662703}
   _config: {fileID: 11400000, guid: 085e32916ceda264f9ca312429813b47, type: 2}
 --- !u!1 &637935183
 GameObject:
@@ -3362,6 +3368,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c0bbad1d48ae94cabae70067130758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _crafter: {fileID: 1299032988}
+  _craftingView: {fileID: 1453721367}
   _config: {fileID: 11400000, guid: d9b4c7526d1a48c4ca32ebf9737d7434, type: 2}
 --- !u!61 &1548391191
 BoxCollider2D:
