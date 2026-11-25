@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -6,13 +5,13 @@ public class TrapCraftingPoint : MonoBehaviour
 {
     [SerializeField] private TrapSpawner _spawner;
     [SerializeField] private TrapCraftingView _view;
-    [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private TrapDefinitionSO _definition;
+    [SerializeField] private LayerMask _playerLayer;
 
-    private SpriteRenderer _spriteRenderer;
     private float _craftingProgress;
     private bool _isPlayerInside;
     private bool _isCompleted;
+    private SpriteRenderer _spriteRenderer;
 
     private void Awake()
     {
@@ -24,8 +23,15 @@ public class TrapCraftingPoint : MonoBehaviour
         if (_isPlayerInside == false || _isCompleted == true)
             return;
 
-        _craftingProgress += Time.deltaTime;
-        _view.SetProgress(_craftingProgress / _definition.CraftingTime);
+        Crafting(Time.deltaTime);
+    }
+
+    private void Crafting(float deltaTime)
+    {
+        _craftingProgress += deltaTime;
+
+        float progress = _craftingProgress / _definition.CraftingTime;
+        _view.SetProgress(progress);
 
         if (_craftingProgress >= _definition.CraftingTime)
             CompleteCrafting();
