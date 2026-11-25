@@ -4,15 +4,17 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class TrapCraftingPoint : MonoBehaviour
 {
+    private const float CraftingTime = 1.5f;
+
     [SerializeField] private TrapSpawner _spawner;
     [SerializeField] private TrapCraftingView _view;
-    [SerializeField] private TrapConfigSO _definition;
     [SerializeField] private LayerMask _playerLayer;
+    [SerializeField] private TrapConfigSO _scriptableObject;
 
-    private float _craftingProgress;
-    private bool _isCompleted;
     private SpriteRenderer _spriteRenderer;
     private Coroutine _craftingRoutine;
+    private float _craftingProgress;
+    private bool _isCompleted;
 
     private void Awake()
     {
@@ -56,10 +58,10 @@ public class TrapCraftingPoint : MonoBehaviour
 
     private IEnumerator CraftingRoutine()
     {
-        while (_craftingProgress < _definition.CraftingTime)
+        while (_craftingProgress < CraftingTime)
         {
             _craftingProgress += Time.deltaTime;
-            _view.SetProgress(_craftingProgress / _definition.CraftingTime);
+            _view.SetProgress(_craftingProgress / CraftingTime);
 
             yield return null;
         }
@@ -73,6 +75,6 @@ public class TrapCraftingPoint : MonoBehaviour
         _isCompleted = true;
         _view.Hide();
         _spriteRenderer.enabled = false;
-        _spawner.Spawn(_definition.Prefab, transform);
+        _spawner.Spawn(_scriptableObject.Prefab, transform);
     }
 }
