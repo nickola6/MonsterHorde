@@ -23,6 +23,8 @@ public class AutoGitCommit
 
     private static void OnSceneSaved(UnityEngine.SceneManagement.Scene scene)
     {
+        UnityEngine.Debug.Log("AutoGitCommit: sceneSaved event received.");
+
         _nextSyncTime = EditorApplication.timeSinceStartup + Delay;
 
         if (_isWaiting == false)
@@ -42,7 +44,7 @@ public class AutoGitCommit
 
         if (File.Exists(ScriptPath) == false)
         {
-            Debug.LogError($"AutoGitCommit: script not found: {ScriptPath}");
+            UnityEngine.Debug.LogError($"AutoGitCommit: script not found: {ScriptPath}");
             return;
         }
 
@@ -76,13 +78,13 @@ public class AutoGitCommit
     private static void OnOutputReceived(object sender, DataReceivedEventArgs args)
     {
         if (string.IsNullOrEmpty(args.Data) == false)
-            Debug.Log($"AutoGitCommit: {args.Data}");
+            UnityEngine.Debug.Log($"AutoGitCommit: {args.Data}");
     }
 
     private static void OnErrorReceived(object sender, DataReceivedEventArgs args)
     {
         if (string.IsNullOrEmpty(args.Data) == false)
-            Debug.LogError($"AutoGitCommit: {args.Data}");
+            UnityEngine.Debug.LogError($"AutoGitCommit: {args.Data}");
     }
 
     private static void OnProcessExited(object sender, System.EventArgs args)
@@ -93,9 +95,9 @@ public class AutoGitCommit
         EditorApplication.delayCall += () =>
         {
             if (exitCode == 0)
-                Debug.Log("AutoGitCommit: synchronization completed.");
+                UnityEngine.Debug.Log("AutoGitCommit: synchronization completed.");
             else
-                Debug.LogError($"AutoGitCommit: process failed with code {exitCode}.");
+                UnityEngine.Debug.LogError($"AutoGitCommit: process failed with code {exitCode}.");
 
             process.Dispose();
             _isRunning = false;
