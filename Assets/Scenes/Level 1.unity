@@ -315,7 +315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &103303175
 Transform:
   m_ObjectHideFlags: 0
@@ -325,7 +325,7 @@ Transform:
   m_GameObject: {fileID: 103303174}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -7.89, y: 1.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: 8e07e437dbc184a4889e1ea8db97d0ab, type: 2}
   _pool: {fileID: 1022279408}
-  _player: {fileID: 0}
+  _player: {fileID: 1202050164046538454}
 --- !u!1 &174529149
 GameObject:
   m_ObjectHideFlags: 0
@@ -1594,7 +1594,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &942615172
 Transform:
   m_ObjectHideFlags: 0
@@ -1604,7 +1604,7 @@ Transform:
   m_GameObject: {fileID: 942615171}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.17, y: 2.74, z: 0}
+  m_LocalPosition: {x: -7.76, y: 3.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2371,6 +2371,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _configs:
+  - {fileID: 11400000, guid: b3d04cabcbcdeee4e86ff50f4ee6f1f2, type: 2}
+  - {fileID: 11400000, guid: 8e07e437dbc184a4889e1ea8db97d0ab, type: 2}
+  - {fileID: 11400000, guid: c738c1467d349c24b83e2f92291fb574, type: 2}
+  - {fileID: 11400000, guid: a1c41f52ac793b84e856467571790b12, type: 2}
   - {fileID: 11400000, guid: e9b4c55bcca20534cb30efcedc7f896f, type: 2}
 --- !u!4 &1022279409
 Transform:
@@ -2527,7 +2531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1200750963
 Transform:
   m_ObjectHideFlags: 0
@@ -2537,7 +2541,7 @@ Transform:
   m_GameObject: {fileID: 1200750962}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6.16, y: 3.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2557,7 +2561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: b3d04cabcbcdeee4e86ff50f4ee6f1f2, type: 2}
   _pool: {fileID: 1022279408}
-  _player: {fileID: 0}
+  _player: {fileID: 1202050164046538454}
 --- !u!1 &1273286525
 GameObject:
   m_ObjectHideFlags: 0
@@ -2895,7 +2899,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1363499088
 Transform:
   m_ObjectHideFlags: 0
@@ -2905,7 +2909,7 @@ Transform:
   m_GameObject: {fileID: 1363499087}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -7.97, y: -3.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2925,7 +2929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: a1c41f52ac793b84e856467571790b12, type: 2}
   _pool: {fileID: 1022279408}
-  _player: {fileID: 0}
+  _player: {fileID: 1202050164046538454}
 --- !u!1 &1434493814
 GameObject:
   m_ObjectHideFlags: 0
@@ -3493,7 +3497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 015395af2a700994cb0031cc28aedc0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 10
+  _damage: 39
   _spriteRenderer: {fileID: 174529151}
   _targetFilter: {fileID: 1659368244}
   _projectilePrefab: {fileID: 3865173056753688640, guid: e499a7052e1e6d646b2c23fb6038be64, type: 3}
@@ -3906,7 +3910,7 @@ Transform:
   m_GameObject: {fileID: 2016591561}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6.33, y: -3.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3926,7 +3930,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: c738c1467d349c24b83e2f92291fb574, type: 2}
   _pool: {fileID: 1022279408}
-  _player: {fileID: 0}
+  _player: {fileID: 1202050164046538454}
 --- !u!1 &2026820373
 GameObject:
   m_ObjectHideFlags: 0
