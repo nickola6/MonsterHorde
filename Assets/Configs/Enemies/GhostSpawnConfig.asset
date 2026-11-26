@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5477f5924eb365d4089f5b2af18f31a4, type: 3}
   m_Name: GhostSpawnConfig
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 0}
+  _prefab: {fileID: 4603206518068388532, guid: f22c0ab92bb608544be1f98b05540dd0, type: 3}
   _spawnCount: 5
   _startDelay: 1
   _spawnInterval: 1

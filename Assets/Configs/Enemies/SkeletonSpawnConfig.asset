@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5477f5924eb365d4089f5b2af18f31a4, type: 3}
   m_Name: SkeletonSpawnConfig
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 0}
+  _prefab: {fileID: 7570239923002958847, guid: ef2b62e3d8d0e4649b7004c5ecff943a, type: 3}
   _spawnCount: 5
   _startDelay: 1
   _spawnInterval: 1

@@ -29,9 +29,7 @@ public class Follower : MonoBehaviour
         _target = null;
 
         if (_agent.isOnNavMesh)
-        {
             _agent.ResetPath();
-        }
     }
 
     public void Initialize(Transform target)
@@ -45,9 +43,7 @@ public class Follower : MonoBehaviour
     private void Update()
     {
         if (_target == null || _agent.isOnNavMesh == false)
-        {
             return;
-        }
 
         if (Time.time >= _nextDestinationUpdateTime)
         {
@@ -58,8 +54,6 @@ public class Follower : MonoBehaviour
         Vector2 direction = _agent.velocity;
 
         if (direction.sqrMagnitude > DirectionThreshold * DirectionThreshold)
-        {
             _characterFacing.SetDirection(direction);
-        }
     }
 }
