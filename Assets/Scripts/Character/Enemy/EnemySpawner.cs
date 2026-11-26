@@ -24,9 +24,7 @@ public class EnemySpawner : MonoBehaviour
     private void OnDestroy()
     {
         foreach (Enemy enemy in _spawnedEnemies)
-        {
-            enemy.Died -= OnEnemyDied;
-        }
+        enemy.Died -= OnEnemyDied;
 
         _spawnedEnemies.Clear();
     }
@@ -65,9 +63,7 @@ public class EnemySpawner : MonoBehaviour
             enemy.Initialize(_player);
 
             if (i < _config.SpawnCount - 1)
-            {
-                yield return new WaitForSeconds(_config.SpawnInterval);
-            }
+            yield return new WaitForSeconds(_config.SpawnInterval);
         }
 
         _spawnRoutine = null;

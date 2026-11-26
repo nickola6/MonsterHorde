@@ -5,12 +5,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private HarvestableArea _harvestableArea;
-    [SerializeField] private DamageableArea _damageableArea;
+    [SerializeField] private TargetDetectionArea _targetDetectionArea;
 
     private Health _health;
 
     public Health Health => _health;
-    public DamageableArea DamageableArea => _damageableArea;
+    public TargetDetectionArea TargetDetectionArea => _targetDetectionArea;
     public IReadOnlyCollection<Resource> Resources => _harvestableArea.Targets;
 
     private void Awake()

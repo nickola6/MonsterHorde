@@ -2,8 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class HarvestableArea : DetectionArea
+[RequireComponent(typeof(TargetDetectionArea))]
+public class HarvestableArea : MonoBehaviour
 {
+    private TargetDetectionArea _targetDetectionArea;
     [SerializeField] private HarvestableWeapon _weapon;
 
     private readonly HarvestTargetTracker _tracker = new();
@@ -13,13 +15,22 @@ public class HarvestableArea : DetectionArea
 
     public IReadOnlyCollection<Resource> Targets => _tracker.Targets;
 
+    private void Awake()
+    {
+        _targetDetectionArea = GetComponent<TargetDetectionArea>();
+    }
+
     private void OnEnable()
     {
+        _targetDetectionArea.TargetEntered += OnTargetEntered;
+        _targetDetectionArea.TargetExited += OnTargetExited;
         _tracker.TargetEntered += OnResourceEntered;
     }
 
     private void OnDisable()
     {
+        _targetDetectionArea.TargetEntered -= OnTargetEntered;
+        _targetDetectionArea.TargetExited -= OnTargetExited;
         _tracker.TargetEntered -= OnResourceEntered;
         _tracker.Clear();
         _attackTargets.Clear();
@@ -33,15 +44,15 @@ public class HarvestableArea : DetectionArea
         PerformHarvest();
     }
 
-    protected override void OnTargetEntered(Collider2D other)
+    private void OnTargetEntered(Collider2D other)
     {
-        if (other.TryGetComponent<Resource>(out var resource))
+        if (other.TryGetComponent<Resource>(out Resource resource))
             _tracker.Add(resource);
     }
 
-    protected override void OnTargetExited(Collider2D other)
+    private void OnTargetExited(Collider2D other)
     {
-        if (other.TryGetComponent<Resource>(out var resource))
+        if (other.TryGetComponent<Resource>(out Resource resource))
             _tracker.Remove(resource);
     }
 

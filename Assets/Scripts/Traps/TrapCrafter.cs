@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 
@@ -13,18 +12,21 @@ public class TrapCrafter : MonoBehaviour
     private TrapCraftingPoint _activePoint;
     private TrapConfigSO _activeConfig;
 
+    private void OnDisable()
+    {
+        CancelCrafting();
+    }
+
     public void StartCrafting(TrapCraftingPoint point, TrapConfigSO config, Collider2D other)
     {
         if ((_playerLayer.value & (1 << other.gameObject.layer)) == 0)
         {
             return;
         }
-
         if (_craftingRoutine != null)
         {
             return;
         }
-
         _activePoint = point;
         _activeConfig = config;
         _craftingRoutine = StartCoroutine(CraftingRoutine());
@@ -36,7 +38,6 @@ public class TrapCrafter : MonoBehaviour
         {
             return;
         }
-
         if (_activePoint != point || _craftingRoutine == null)
         {
             return;
@@ -54,12 +55,6 @@ public class TrapCrafter : MonoBehaviour
 
         CancelCrafting();
     }
-
-    private void OnDisable()
-    {
-        CancelCrafting();
-    }
-
     private IEnumerator CraftingRoutine()
     {
         float elapsedTime = 0f;
@@ -71,39 +66,28 @@ public class TrapCrafter : MonoBehaviour
 
             yield return null;
         }
-
         CompleteCrafting();
         _craftingRoutine = null;
     }
-
     private void CompleteCrafting()
     {
         TrapCraftingPoint point = _activePoint;
         TrapConfigSO config = _activeConfig;
         TrapSpawner spawner = _spawner;
-
         Trap prefab = config.Prefab;
         Transform spawnPoint = point.transform;
-
         point.Complete();
         spawner.Spawn(prefab, spawnPoint);
-
         ClearState();
     }
-
     private void CancelCrafting()
     {
         if (_craftingRoutine != null)
-        {
-            StopCoroutine(_craftingRoutine);
-        }
-
+        StopCoroutine(_craftingRoutine);
         _craftingRoutine = null;
         _activePoint?.ResetProgress();
-
         ClearState();
     }
-
     private void ClearState()
     {
         _activePoint = null;

@@ -20,9 +20,7 @@ public class TrapAppearance : MonoBehaviour
     public void Play()
     {
         if (_appearanceRoutine != null)
-        {
-            StopCoroutine(_appearanceRoutine);
-        }
+        StopCoroutine(_appearanceRoutine);
 
         _appearanceRoutine = StartCoroutine(AppearanceRoutine());
     }

@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 
@@ -20,6 +19,15 @@ public class Bomb : DamageTrap
         base.Awake();
         _detectionCollider = GetComponent<CircleCollider2D>();
         _originalColor = _spriteRenderer.color;
+    }
+
+    private void OnDisable()
+    {
+        if (_attackRoutine != null)
+        StopCoroutine(_attackRoutine);
+
+        _attackRoutine = null;
+        _isReady = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -67,14 +75,5 @@ public class Bomb : DamageTrap
         }
     }
 
-    private void OnDisable()
-    {
-        if (_attackRoutine != null)
-        {
-            StopCoroutine(_attackRoutine);
-        }
 
-        _attackRoutine = null;
-        _isReady = true;
-    }
 }

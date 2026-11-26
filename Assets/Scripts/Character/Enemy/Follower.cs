@@ -23,22 +23,6 @@ public class Follower : MonoBehaviour
         _agent.autoBraking = false;
     }
 
-    private void OnDisable()
-    {
-        _target = null;
-
-        if (_agent.isOnNavMesh)
-            _agent.ResetPath();
-    }
-
-    public void Initialize(Transform target)
-    {
-        _target = target;
-        _agent.speed = Mathf.Max(0f, _moveSpeed + Random.Range(-_moveSpeedVariation, _moveSpeedVariation));
-        _agent.avoidancePriority = Random.Range(0, 100);
-        _nextDestinationUpdateTime = 0f;
-    }
-
     private void Update()
     {
         if (_target == null || _agent.isOnNavMesh == false)
@@ -55,4 +39,22 @@ public class Follower : MonoBehaviour
         if (direction.sqrMagnitude > DirectionThreshold * DirectionThreshold)
             _characterFacing.SetDirection(direction);
     }
+
+    private void OnDisable()
+    {
+        _target = null;
+
+        if (_agent.isOnNavMesh)
+            _agent.ResetPath();
+    }
+
+    public void Initialize(Transform target)
+    {
+        _target = target;
+        _agent.speed = Mathf.Max(0f, _moveSpeed + Random.Range(-_moveSpeedVariation, _moveSpeedVariation));
+        _agent.avoidancePriority = Random.Range(0, 100);
+        _nextDestinationUpdateTime = 0f;
+    }
+
+
 }

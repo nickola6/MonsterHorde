@@ -37,7 +37,7 @@ public class ContactDamager : MonoBehaviour
 
         if (target == null)
             return;
-        
+
         _contacts.Add(other, target);
 
         if (_nextDamageTimes.ContainsKey(target))

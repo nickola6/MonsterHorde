@@ -32,16 +32,12 @@ public class TargetDetectionArea : MonoBehaviour
         }
 
         if (_targets.Add(other))
-        {
-            TargetEntered?.Invoke(other);
-        }
+        TargetEntered?.Invoke(other);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (_targets.Remove(other))
-        {
-            TargetExited?.Invoke(other);
-        }
+        TargetExited?.Invoke(other);
     }
 }

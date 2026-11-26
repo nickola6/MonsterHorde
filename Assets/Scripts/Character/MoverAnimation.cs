@@ -6,7 +6,7 @@ public class MoverAnimation : MonoBehaviour
     private const string SpeedParameter = "Speed";
 
     [SerializeField] private InputReader _inputReader;
-    
+
     private Animator _animator;
 
     private void Awake()
