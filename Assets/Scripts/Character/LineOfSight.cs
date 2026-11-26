@@ -23,19 +23,16 @@ public class LineOfSight : MonoBehaviour
     public bool CanSee(Collider2D target)
     {
         if (target == null)
-        {
             return false;
-        }
 
         if (_visibility.TryGetValue(target, out VisibilityState state) && Time.time < state.NextCheckTime)
-        {
             return state.IsVisible;
-        }
 
         Vector2 direction = (Vector2)target.bounds.center - (Vector2)transform.position;
         float distance = direction.magnitude;
+
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction.normalized, distance, _obstacleLayers);
-        bool isVisible = hit.collider == null;
+        bool isVisible = hit.collider == null || hit.collider == target;
 
         _visibility[target] = new VisibilityState
         {
