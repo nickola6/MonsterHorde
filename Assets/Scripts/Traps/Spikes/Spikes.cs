@@ -6,7 +6,7 @@ public class Spikes : DamageTrap
 {
     private const int HitCount = 7;
     private const float HitInterval = 1f;
-    private const float Cooldown = 10f;
+    private const float Cooldown = 15f;
 
     private bool _isBusy;
     private Coroutine _attackRoutine;

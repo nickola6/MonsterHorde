@@ -3431,7 +3431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1659368243
 Transform:
   m_ObjectHideFlags: 0
@@ -4478,7 +4478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _harvestableArea: {fileID: 1985356466056280254}
-  _damageableArea: {fileID: 0}
+  _targetDetectionArea: {fileID: 8864845955118601882}
 --- !u!1 &1313457583065593736
 GameObject:
   m_ObjectHideFlags: 0
@@ -4621,6 +4621,8 @@ GameObject:
   - component: {fileID: 3430136727064261839}
   - component: {fileID: 1811151854596431814}
   - component: {fileID: 1985356466056280254}
+  - component: {fileID: 3430136727064261841}
+  - component: {fileID: 3430136727064261840}
   m_Layer: 0
   m_Name: HarvestableArea
   m_TagString: Untagged
@@ -9960,6 +9962,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 515925972}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3430136727064261840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752582696758963496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c2308a0b0a0c2419fd6727994474c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetLayers:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!58 &3430136727064261841
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752582696758963496}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!114 &3449807877380230999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10953,7 +11005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5868bb0f05cd6bf469ac7420ea1354e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetDetectionArea: {fileID: 0}
+  _targetDetectionArea: {fileID: 8864845955118601882}
   _lineOfSight: {fileID: 7203183238118287268}
   _weapon: {fileID: 1659368247}
 --- !u!4 &7590006717302060992
