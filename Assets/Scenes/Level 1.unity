@@ -4478,7 +4478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _harvestableArea: {fileID: 1985356466056280254}
-  _damageableArea: {fileID: 2285775274786241498}
+  _damageableArea: {fileID: 0}
 --- !u!1 &1313457583065593736
 GameObject:
   m_ObjectHideFlags: 0
@@ -9616,20 +9616,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &2285775274786241498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4276644990797736980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a583ae78c2d61443b177c5c84454f96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rangeColor: {r: 0.55, g: 0.68, b: 0.72, a: 0.25}
-  _lineWidth: 0.025
 --- !u!114 &2380230401942952730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10193,10 +10179,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8864845955118601880}
   - component: {fileID: 69475456475567402}
-  - component: {fileID: 2285775274786241498}
+  - component: {fileID: 8864845955118601882}
   - component: {fileID: 8864845955118601881}
   m_Layer: 0
-  m_Name: DamageableArea
+  m_Name: TargetDetectionArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10967,7 +10953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5868bb0f05cd6bf469ac7420ea1354e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageableArea: {fileID: 2285775274786241498}
+  _targetDetectionArea: {fileID: 0}
   _lineOfSight: {fileID: 7203183238118287268}
   _weapon: {fileID: 1659368247}
 --- !u!4 &7590006717302060992
@@ -11229,6 +11215,21 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &8864845955118601882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4276644990797736980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c2308a0b0a0c2419fd6727994474c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetLayers:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!199 &8877126185366941386
 ParticleSystemRenderer:
   serializedVersion: 6
