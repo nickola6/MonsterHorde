@@ -1,21 +1,30 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Follower))]
 public class RangedDamager : MonoBehaviour
 {
     [SerializeField] private TargetDetectionArea _targetDetectionArea;
     [SerializeField] private LineOfSight _lineOfSight;
     [SerializeField] private DamageableWeapon _weapon;
 
+    private Follower _follower;
+
+    private void Awake()
+    {
+        _follower = GetComponent<Follower>();
+    }
+
     private void Update()
     {
         if (TryGetTargetDirection(out Vector2 direction))
         {
+            _follower.StopFollowing();
             _weapon.Aim(direction);
             _weapon.Attack(direction);
-
             return;
         }
 
+        _follower.ResumeFollowing();
         _weapon.ResetAim();
     }
 
@@ -27,26 +36,18 @@ public class RangedDamager : MonoBehaviour
         foreach (Collider2D target in _targetDetectionArea.Targets)
         {
             if (target == null || _weapon.TargetFilter.Contains(target.gameObject) == false)
-            {
                 continue;
-            }
 
             if (_lineOfSight.CanSee(target) == false)
-            {
                 continue;
-            }
 
             if (target.GetComponent<IDamageable>() == null)
-            {
                 continue;
-            }
 
             float distance = ((Vector2)target.bounds.center - (Vector2)transform.position).sqrMagnitude;
 
             if (distance >= closestDistance)
-            {
                 continue;
-            }
 
             closestDistance = distance;
             closestTarget = target;
