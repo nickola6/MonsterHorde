@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
 public class Follower : MonoBehaviour
 {
     private const float DestinationUpdateInterval = 0.1f;
