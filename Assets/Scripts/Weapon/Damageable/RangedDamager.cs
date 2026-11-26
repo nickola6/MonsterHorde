@@ -1,8 +1,9 @@
+
 using UnityEngine;
 
 public class RangedDamager : MonoBehaviour
 {
-    [SerializeField] private DamageableArea _damageableArea;
+    [SerializeField] private TargetDetectionArea _targetDetectionArea;
     [SerializeField] private LineOfSight _lineOfSight;
     [SerializeField] private DamageableWeapon _weapon;
 
@@ -24,24 +25,32 @@ public class RangedDamager : MonoBehaviour
         Collider2D closestTarget = null;
         float closestDistance = float.MaxValue;
 
-        foreach (DamageableArea.TargetInfo target in _damageableArea.Targets)
+        foreach (Collider2D target in _targetDetectionArea.Targets)
         {
-            if (target.Collider == null || _weapon.TargetFilter.Contains(target.Collider.gameObject) == false)
+            if (target == null || _weapon.TargetFilter.Contains(target.gameObject) == false)
+            {
                 continue;
+            }
 
-            if (_lineOfSight.CanSee(target.Collider) == false)
+            if (_lineOfSight.CanSee(target) == false)
+            {
                 continue;
+            }
 
-            float distance = (target.Position - (Vector2)transform.position).sqrMagnitude;
+            if (target.GetComponent<IDamageable>() == null)
+            {
+                continue;
+            }
+
+            float distance = ((Vector2)target.bounds.center - (Vector2)transform.position).sqrMagnitude;
 
             if (distance >= closestDistance)
+            {
                 continue;
-
-            if (target.Collider.GetComponent<IDamageable>() == null)
-                continue;
+            }
 
             closestDistance = distance;
-            closestTarget = target.Collider;
+            closestTarget = target;
         }
 
         if (closestTarget == null)
