@@ -1,37 +1,80 @@
 
+using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(CircleCollider2D))]
 public class Bomb : DamageTrap
 {
-    private CircleCollider2D _collider;
+    private const float ExplosionDelay = 1f;
+    private const float Cooldown = 5f;
 
-    protected override void Awake()
+    [SerializeField] private float _explosionRadius = 1.5f;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+
+    private CircleCollider2D _detectionCollider;
+    private Color _originalColor;
+    private bool _isReady = true;
+    private Coroutine _attackRoutine;
+
+    private void Awake()
     {
         base.Awake();
-        _collider = GetComponent<CircleCollider2D>();
+        _detectionCollider = GetComponent<CircleCollider2D>();
+        _originalColor = _spriteRenderer.color;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (TargetFilter.Contains(other.gameObject) == false)
+        if (_isReady == false || TargetFilter.Contains(other.gameObject) == false)
+        {
             return;
+        }
 
-        Vector2 center = transform.TransformPoint(_collider.offset);
-        float scale = Mathf.Max(Mathf.Abs(transform.lossyScale.x), Mathf.Abs(transform.lossyScale.y));
-        float radius = _collider.radius * scale;
+        _attackRoutine = StartCoroutine(AttackRoutine());
+    }
 
-        Collider2D[] targets = Physics2D.OverlapCircleAll(center, radius);
+    private IEnumerator AttackRoutine()
+    {
+        _isReady = false;
+
+        yield return new WaitForSeconds(ExplosionDelay);
+
+        Explode();
+
+        _spriteRenderer.color = Color.gray;
+
+        yield return new WaitForSeconds(Cooldown);
+
+        _spriteRenderer.color = _originalColor;
+        _isReady = true;
+        _attackRoutine = null;
+    }
+
+    private void Explode()
+    {
+        Vector2 center = transform.TransformPoint(_detectionCollider.offset);
+        Collider2D[] targets = Physics2D.OverlapCircleAll(center, _explosionRadius);
 
         foreach (Collider2D targetCollider in targets)
         {
             if (TargetFilter.Contains(targetCollider.gameObject) == false)
+            {
                 continue;
+            }
 
-            if (targetCollider.TryGetComponent<IDamageable>(out IDamageable target))
-                target.TakeDamage(Damage);
+            IDamageable target = targetCollider.GetComponent<IDamageable>();
+
+            target?.TakeDamage(Damage);
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (_attackRoutine != null)
+        {
+            StopCoroutine(_attackRoutine);
         }
 
-        Destroy(gameObject);
+        _attackRoutine = null;
+        _isReady = true;
     }
 }
