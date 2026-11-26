@@ -21,11 +21,12 @@ public class Follower : MonoBehaviour
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
         _agent.autoBraking = false;
+        _agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
     }
 
     private void Update()
     {
-        if (_target == null || _agent.isOnNavMesh == false)
+        if (_target == null || _agent.isOnNavMesh == false || _agent.isStopped == true)
             return;
 
         if (Time.time >= _nextDestinationUpdateTime)
@@ -44,17 +45,36 @@ public class Follower : MonoBehaviour
     {
         _target = null;
 
-        if (_agent.isOnNavMesh)
-            _agent.ResetPath();
+        if (_agent.isOnNavMesh == false)
+            return;
+
+        _agent.isStopped = false;
+        _agent.ResetPath();
     }
 
     public void Initialize(Transform target)
     {
         _target = target;
         _agent.speed = Mathf.Max(0f, _moveSpeed + Random.Range(-_moveSpeedVariation, _moveSpeedVariation));
-        _agent.avoidancePriority = Random.Range(0, 100);
+        _agent.isStopped = false;
         _nextDestinationUpdateTime = 0f;
     }
 
+    public void StopFollowing()
+    {
+        if (_agent.isOnNavMesh == false)
+            return;
 
+        _agent.isStopped = true;
+        _agent.ResetPath();
+    }
+
+    public void ResumeFollowing()
+    {
+        if (_agent.isOnNavMesh == false)
+            return;
+
+        _agent.isStopped = false;
+        _nextDestinationUpdateTime = 0f;
+    }
 }
