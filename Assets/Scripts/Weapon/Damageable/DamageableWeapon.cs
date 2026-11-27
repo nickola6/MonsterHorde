@@ -3,7 +3,6 @@ using UnityEngine;
 public class DamageableWeapon : Weapon
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] private DamageableTargetFilter _targetFilter;
     [SerializeField] private Projectile _projectilePrefab;
     [SerializeField] private float _projectileSpeed = 12f;
     [SerializeField] private float _projectileOffset = 0.5f;
@@ -17,7 +16,6 @@ public class DamageableWeapon : Weapon
     private bool _isAiming;
 
     public float AttackSpeed => _attackSpeed;
-    public DamageableTargetFilter TargetFilter => _targetFilter;
 
     private void Awake()
     {
@@ -63,7 +61,7 @@ public class DamageableWeapon : Weapon
         Vector2 normalizedDirection = direction.normalized;
         Vector2 spawnPosition = (Vector2)_spriteRenderer.transform.position + normalizedDirection * _projectileOffset;
         Projectile projectile = Instantiate(_projectilePrefab, spawnPosition, Quaternion.identity);
-        projectile.Initialize(normalizedDirection, _projectileSpeed, Damage, this, _targetFilter);
+        projectile.Initialize(normalizedDirection, _projectileSpeed, Damage);
         _nextAttackTime = Time.time + 1f / _attackSpeed;
     }
 }
