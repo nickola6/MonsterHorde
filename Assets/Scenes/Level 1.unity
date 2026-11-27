@@ -3423,7 +3423,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1659368243}
   - component: {fileID: 1659368246}
-  - component: {fileID: 1659368244}
   - component: {fileID: 1659368247}
   m_Layer: 0
   m_Name: DamageableWeapon
@@ -3449,19 +3448,6 @@ Transform:
   - {fileID: 8864845955118601880}
   m_Father: {fileID: 3175729913401744585}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
---- !u!114 &1659368244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1659368242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73cd98aab4628b545b1911b9d7eaf67e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _config: {fileID: 0}
 --- !u!95 &1659368246
 Animator:
   serializedVersion: 5
@@ -3497,7 +3483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 39
   _spriteRenderer: {fileID: 174529151}
-  _targetFilter: {fileID: 1659368244}
+  _targetFilter: {fileID: 7203183238118287271}
   _projectilePrefab: {fileID: 3865173056753688640, guid: e499a7052e1e6d646b2c23fb6038be64, type: 3}
   _projectileSpeed: 12
   _projectileOffset: 0.5
@@ -10190,8 +10176,8 @@ GameObject:
   - component: {fileID: 3449807877380230999}
   - component: {fileID: 1202050164046538454}
   - component: {fileID: 7203183238118287268}
-  - component: {fileID: 7203183238118287269}
   - component: {fileID: 7203183238118287270}
+  - component: {fileID: 7203183238118287271}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -10976,20 +10962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _obstacleLayers:
     serializedVersion: 2
-    m_Bits: 0
---- !u!114 &7203183238118287269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3993595017691983365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73cd98aab4628b545b1911b9d7eaf67e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: 025a529b3185c004290fb5efe84233d1, type: 2}
+    m_Bits: 8
 --- !u!114 &7203183238118287270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11005,6 +10978,21 @@ MonoBehaviour:
   _targetDetectionArea: {fileID: 8864845955118601882}
   _lineOfSight: {fileID: 7203183238118287268}
   _weapon: {fileID: 1659368247}
+--- !u!114 &7203183238118287271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3993595017691983365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cd98aab4628b545b1911b9d7eaf67e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetLayers:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!4 &7590006717302060992
 Transform:
   m_ObjectHideFlags: 0
@@ -11278,7 +11266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
 --- !u!199 &8877126185366941386
 ParticleSystemRenderer:
   serializedVersion: 6
