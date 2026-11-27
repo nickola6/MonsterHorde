@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 7102052023800978414}
   - component: {fileID: 965986150916311263}
   - component: {fileID: 2247486233525819739}
+  - component: {fileID: -3086606573161509010}
   m_Layer: 7
   m_Name: Vampire
   m_TagString: Untagged
@@ -325,6 +326,20 @@ MonoBehaviour:
   _moveSpeed: 2
   _moveSpeedVariation: 0.2
   _characterFacing: {fileID: 249395916355931831}
+--- !u!114 &-3086606573161509010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814940888918748857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3391a40b30f9b634d8a059c5dfee958e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 50
+  _hitInterval: 1
 --- !u!1 &5128570187789811162
 GameObject:
   m_ObjectHideFlags: 0
