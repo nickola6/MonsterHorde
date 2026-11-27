@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class TargetDetectionArea : MonoBehaviour
 {
-    [SerializeField] private TargetConfigSO _config;
+    [SerializeField] private LayerMask _targetLayers;
 
     private readonly HashSet<Collider2D> _targets = new();
 
@@ -26,7 +27,7 @@ public class TargetDetectionArea : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if ((_config.TargetLayers.value & (1 << other.gameObject.layer)) == 0)
+        if ((_targetLayers.value & (1 << other.gameObject.layer)) == 0)
             return;
 
         if (other.TryGetComponent<IDamageable>(out IDamageable target) == false)
