@@ -5,9 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class TargetDetectionArea : MonoBehaviour
 {
-    [SerializeField] private LayerMask _targetLayers;
+    [SerializeField] private TargetConfigSO _config;
 
-    private readonly HashSet<Collider2D> _targets = new HashSet<Collider2D>();
+    private readonly HashSet<Collider2D> _targets = new();
 
     public event Action<Collider2D> TargetEntered;
     public event Action<Collider2D> TargetExited;
@@ -26,18 +26,19 @@ public class TargetDetectionArea : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if ((_targetLayers.value & (1 << other.gameObject.layer)) == 0)
-        {
+        if ((_config.TargetLayers.value & (1 << other.gameObject.layer)) == 0)
             return;
-        }
+
+        if (other.TryGetComponent<IDamageable>(out IDamageable target) == false)
+            return;
 
         if (_targets.Add(other))
-        TargetEntered?.Invoke(other);
+            TargetEntered?.Invoke(other);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (_targets.Remove(other))
-        TargetExited?.Invoke(other);
+            TargetExited?.Invoke(other);
     }
 }
