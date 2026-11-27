@@ -1,18 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetConfigSO : MonoBehaviour
+[CreateAssetMenu(fileName = "TargetConfig", menuName = "Configs/Target Config")]
+public class TargetConfigSO : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] public LayerMask TargetLayers { get; private set; }
+    [SerializeField] public LayerMask ObstacleLayers { get; private set; }
 }
