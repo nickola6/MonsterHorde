@@ -41,9 +41,6 @@ public class RangedDamager : MonoBehaviour
             if (_lineOfSight.CanSee(target) == false)
                 continue;
 
-            if (target.GetComponent<IDamageable>() == null)
-                continue;
-
             float distance = ((Vector2)target.bounds.center - (Vector2)transform.position).sqrMagnitude;
 
             if (distance >= closestDistance)
