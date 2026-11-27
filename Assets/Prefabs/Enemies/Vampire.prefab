@@ -176,9 +176,7 @@ GameObject:
   - component: {fileID: 7359875478807081793}
   - component: {fileID: 7102052023800978414}
   - component: {fileID: 965986150916311263}
-  - component: {fileID: 6427846595644924815}
   - component: {fileID: 2247486233525819739}
-  - component: {fileID: 2436281681256428586}
   m_Layer: 7
   m_Name: Vampire
   m_TagString: Untagged
@@ -312,20 +310,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6602311879c70da419ddfdb9d2001a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6427846595644924815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814940888918748857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3391a40b30f9b634d8a059c5dfee958e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 7
-  _hitInterval: 1
 --- !u!114 &2247486233525819739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,21 +325,6 @@ MonoBehaviour:
   _moveSpeed: 2
   _moveSpeedVariation: 0.2
   _characterFacing: {fileID: 249395916355931831}
---- !u!114 &2436281681256428586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814940888918748857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73cd98aab4628b545b1911b9d7eaf67e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _targetLayers:
-    serializedVersion: 2
-    m_Bits: 2112
 --- !u!1 &5128570187789811162
 GameObject:
   m_ObjectHideFlags: 0

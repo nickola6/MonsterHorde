@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ContactDamager : MonoBehaviour
 {
-    [SerializeField] private TargetDetectionArea _targetDetectionArea;
+    [field: SerializeField] private TargetDetectionArea _targetDetectionArea;
     [SerializeField] private float _damage = 5f;
     [SerializeField] private float _hitInterval = 1f;
 
