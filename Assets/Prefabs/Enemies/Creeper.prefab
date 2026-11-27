@@ -793,7 +793,7 @@ GameObject:
   - component: {fileID: 3416417665318998978}
   - component: {fileID: 4778693910270333354}
   - component: {fileID: 8297719052634621260}
-  - component: {fileID: 4090365355169367686}
+  - component: {fileID: 3361585327115564401}
   m_Layer: 7
   m_Name: Creeper
   m_TagString: Untagged
@@ -942,7 +942,7 @@ MonoBehaviour:
   _moveSpeed: 2
   _moveSpeedVariation: 0.2
   _characterFacing: {fileID: 1162385577610043925}
---- !u!114 &4090365355169367686
+--- !u!114 &3361585327115564401
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
