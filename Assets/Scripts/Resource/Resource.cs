@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Health))]
-public class Resource : MonoBehaviour
+public class Resource : MonoBehaviour, IDamageable
 {
     [SerializeField] private ResourceAnimation _animation;
 
