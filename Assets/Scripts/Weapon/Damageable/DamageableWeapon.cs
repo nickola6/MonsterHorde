@@ -37,9 +37,7 @@ public class DamageableWeapon : Weapon
     public void Aim(Vector2 direction)
     {
         if (direction.sqrMagnitude <= Mathf.Epsilon)
-        {
             return;
-        }
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         _targetRotation = Quaternion.Euler(0f, 0f, angle + _aimAngleOffset);
@@ -54,9 +52,7 @@ public class DamageableWeapon : Weapon
     public void Attack(Vector2 direction)
     {
         if (direction.sqrMagnitude <= Mathf.Epsilon || Time.time < _nextAttackTime)
-        {
             return;
-        }
 
         Vector2 normalizedDirection = direction.normalized;
         Vector2 spawnPosition = (Vector2)_spriteRenderer.transform.position + normalizedDirection * _projectileOffset;
