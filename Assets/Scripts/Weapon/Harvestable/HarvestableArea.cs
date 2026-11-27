@@ -5,8 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(TargetDetectionArea))]
 public class HarvestableArea : MonoBehaviour
 {
-    private TargetDetectionArea _targetDetectionArea;
     [SerializeField] private HarvestableWeapon _weapon;
+    [SerializeField] private LineOfSight _lineOfSight;
+
+    private TargetDetectionArea _targetDetectionArea;
 
     private readonly HarvestTargetTracker _tracker = new();
     private readonly List<Resource> _attackTargets = new();
@@ -65,7 +67,18 @@ public class HarvestableArea : MonoBehaviour
     private void PerformHarvest()
     {
         _attackTargets.Clear();
-        _attackTargets.AddRange(Targets);
+
+        foreach (Resource resource in Targets)
+        {
+            if (resource == null)
+                continue;
+
+            if (resource.TryGetComponent<Collider2D>(out Collider2D collider) == false)
+                continue;
+
+            if (_lineOfSight.CanSee(collider))
+                _attackTargets.Add(resource);
+        }
 
         if (_attackTargets.Count == 0)
             return;
@@ -74,11 +87,11 @@ public class HarvestableArea : MonoBehaviour
 
         foreach (Resource resource in _attackTargets)
         {
-            if (resource != null && Targets.Contains(resource))
-                resource.TakeDamage(_weapon.Damage);
+            if (resource == null || Targets.Contains(resource) == false)
+                continue;
 
-            if (resource != null && Targets.Contains(resource))
-                resource.PlayHit();
+            resource.TakeDamage(_weapon.Damage);
+            resource.PlayHit();
         }
 
         _nextAttackTime = Time.time + 1f / _weapon.AttackSpeed;
