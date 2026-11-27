@@ -793,7 +793,6 @@ GameObject:
   - component: {fileID: 3416417665318998978}
   - component: {fileID: 4778693910270333354}
   - component: {fileID: 8297719052634621260}
-  - component: {fileID: 3361585327115564401}
   m_Layer: 7
   m_Name: Creeper
   m_TagString: Untagged
@@ -942,17 +941,3 @@ MonoBehaviour:
   _moveSpeed: 2
   _moveSpeedVariation: 0.2
   _characterFacing: {fileID: 1162385577610043925}
---- !u!114 &3361585327115564401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8108421369482935035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3391a40b30f9b634d8a059c5dfee958e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 50
-  _hitInterval: 1
