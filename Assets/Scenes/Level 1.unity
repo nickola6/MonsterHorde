@@ -9973,7 +9973,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c2308a0b0a0c2419fd6727994474c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: 025a529b3185c004290fb5efe84233d1, type: 2}
+  _targetLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!58 &3430136727064261841
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10190,8 +10192,6 @@ GameObject:
   - component: {fileID: 7203183238118287268}
   - component: {fileID: 7203183238118287269}
   - component: {fileID: 7203183238118287270}
-  - component: {fileID: 7203183238118287272}
-  - component: {fileID: 7203183238118287271}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -10974,7 +10974,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d53887c5c2b4d041b43908e02b7dae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: 025a529b3185c004290fb5efe84233d1, type: 2}
+  _obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &7203183238118287269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11003,54 +11005,6 @@ MonoBehaviour:
   _targetDetectionArea: {fileID: 8864845955118601882}
   _lineOfSight: {fileID: 7203183238118287268}
   _weapon: {fileID: 1659368247}
---- !u!114 &7203183238118287271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3993595017691983365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03c2308a0b0a0c2419fd6727994474c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _config: {fileID: 0}
---- !u!58 &7203183238118287272
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3993595017691983365}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!4 &7590006717302060992
 Transform:
   m_ObjectHideFlags: 0
@@ -11322,7 +11276,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c2308a0b0a0c2419fd6727994474c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: 025a529b3185c004290fb5efe84233d1, type: 2}
+  _targetLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!199 &8877126185366941386
 ParticleSystemRenderer:
   serializedVersion: 6
