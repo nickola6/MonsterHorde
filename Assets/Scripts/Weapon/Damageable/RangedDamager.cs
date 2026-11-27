@@ -35,7 +35,7 @@ public class RangedDamager : MonoBehaviour
 
         foreach (Collider2D target in _targetDetectionArea.Targets)
         {
-            if (target == null || _weapon.TargetFilter.Contains(target.gameObject) == false)
+            if (target == null)
                 continue;
 
             if (_lineOfSight.CanSee(target) == false)
