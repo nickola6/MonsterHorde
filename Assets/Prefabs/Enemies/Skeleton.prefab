@@ -271,7 +271,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1421533709005499951}
   - component: {fileID: 6153298293309177084}
-  - component: {fileID: 8693468900362345354}
   - component: {fileID: 6545863039673161338}
   m_Layer: 0
   m_Name: DamageableWeapon (1)
@@ -318,21 +317,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8693468900362345354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2909752664804277073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73cd98aab4628b545b1911b9d7eaf67e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _targetLayers:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &6545863039673161338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,7 +331,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 10
   _spriteRenderer: {fileID: 5382431249419531846}
-  _targetFilter: {fileID: 8693468900362345354}
   _projectilePrefab: {fileID: 3865173056753688640, guid: e499a7052e1e6d646b2c23fb6038be64, type: 3}
   _projectileSpeed: 12
   _projectileOffset: 0.5
@@ -809,11 +792,10 @@ GameObject:
   - component: {fileID: 2452455142242962906}
   - component: {fileID: 5514482283783224632}
   - component: {fileID: 7570239923002958847}
-  - component: {fileID: 1504699043039383767}
   - component: {fileID: 3171534301812362816}
-  - component: {fileID: 5051730028749440142}
   - component: {fileID: 1735577587049436114}
   - component: {fileID: 2917235448986093338}
+  - component: {fileID: 380123285278436036}
   m_Layer: 7
   m_Name: Skeleton
   m_TagString: Untagged
@@ -948,20 +930,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6602311879c70da419ddfdb9d2001a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1504699043039383767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5951957724835713116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3391a40b30f9b634d8a059c5dfee958e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 7
-  _hitInterval: 1
 --- !u!114 &3171534301812362816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -977,21 +945,6 @@ MonoBehaviour:
   _moveSpeed: 2
   _moveSpeedVariation: 0.2
   _characterFacing: {fileID: 6741258061309206887}
---- !u!114 &5051730028749440142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5951957724835713116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73cd98aab4628b545b1911b9d7eaf67e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _targetLayers:
-    serializedVersion: 2
-    m_Bits: 2112
 --- !u!114 &1735577587049436114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1022,6 +975,20 @@ MonoBehaviour:
   _obstacleLayers:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &380123285278436036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5951957724835713116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3391a40b30f9b634d8a059c5dfee958e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 50
+  _hitInterval: 1
 --- !u!1 &5973623429323923817
 GameObject:
   m_ObjectHideFlags: 0
