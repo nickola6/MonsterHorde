@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 
     private Health _health;
 
-    public Health Health => _health;
+    public IDamageable Health => _health;
     public TargetDetectionArea TargetDetectionArea => _targetDetectionArea;
     public IReadOnlyCollection<Resource> Resources => _harvestableArea.Targets;
 
