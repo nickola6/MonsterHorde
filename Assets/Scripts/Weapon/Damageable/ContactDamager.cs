@@ -1,66 +1,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(DamageableTargetFilter))]
 public class ContactDamager : MonoBehaviour
 {
-    [SerializeField] private float _damage = 50f;
+    [SerializeField] private TargetDetectionArea _targetDetectionArea;
+    [SerializeField] private float _damage = 5f;
     [SerializeField] private float _hitInterval = 1f;
 
-    private readonly Dictionary<Collider2D, IDamageable> _contacts = new();
     private readonly Dictionary<IDamageable, float> _nextDamageTimes = new();
     private readonly List<IDamageable> _targets = new();
 
-    private DamageableTargetFilter _targetFilter;
-
-    private void Awake()
+    private void OnEnable()
     {
-        _targetFilter = GetComponent<DamageableTargetFilter>();
+        _targetDetectionArea.TargetEntered += OnTargetEntered;
+        _targetDetectionArea.TargetExited += OnTargetExited;
     }
 
     private void OnDisable()
     {
-        _contacts.Clear();
+        _targetDetectionArea.TargetEntered -= OnTargetEntered;
+        _targetDetectionArea.TargetExited -= OnTargetExited;
+
         _nextDamageTimes.Clear();
         _targets.Clear();
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (_targetFilter.Contains(other.gameObject) == false)
-            return;
-
-        if (_contacts.ContainsKey(other))
-            return;
-
-        IDamageable target = other.GetComponent<IDamageable>();
-
-        if (target == null)
-            return;
-
-        _contacts.Add(other, target);
-
-        if (_nextDamageTimes.ContainsKey(target))
-            return;
-
-        target.TakeDamage(_damage);
-        _nextDamageTimes.Add(target, Time.time + _hitInterval);
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (_contacts.TryGetValue(other, out IDamageable target) == false)
-            return;
-
-        _contacts.Remove(other);
-
-        foreach (IDamageable contact in _contacts.Values)
-        {
-            if (contact == target)
-                return;
-        }
-
-        _nextDamageTimes.Remove(target);
     }
 
     private void Update()
@@ -78,5 +40,31 @@ public class ContactDamager : MonoBehaviour
             target.TakeDamage(_damage);
             _nextDamageTimes[target] = Time.time + _hitInterval;
         }
+    }
+
+    private void OnTargetEntered(Collider2D other)
+    {
+        if (other.TryGetComponent<IDamageable>(out IDamageable target) == false)
+            return;
+
+        if (_nextDamageTimes.ContainsKey(target))
+            return;
+
+        target.TakeDamage(_damage);
+        _nextDamageTimes.Add(target, Time.time + _hitInterval);
+    }
+
+    private void OnTargetExited(Collider2D other)
+    {
+        if (other.TryGetComponent<IDamageable>(out IDamageable target) == false)
+            return;
+
+        foreach (Collider2D contact in _targetDetectionArea.Targets)
+        {
+            if (contact.TryGetComponent<IDamageable>(out IDamageable currentTarget) && currentTarget == target)
+                return;
+        }
+
+        _nextDamageTimes.Remove(target);
     }
 }
