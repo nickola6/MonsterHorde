@@ -4,8 +4,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
-    private DamageableTargetFilter _targetFilter;
     private float _damage;
+    private bool _hasHit;
 
     private void Awake()
     {
@@ -14,27 +14,22 @@ public class Projectile : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        if (_targetFilter.Contains(other.gameObject) == false)
-        {
+        if (_hasHit)
             return;
-        }
 
-        if (other.TryGetComponent<IDamageable>(out IDamageable target) == false)
-        {
-            return;
-        }
+        _hasHit = true;
 
-        target.TakeDamage(_damage);
+        if (other.TryGetComponent<IDamageable>(out IDamageable target))
+            target.TakeDamage(_damage);
+
         Destroy(gameObject);
     }
 
-    public virtual void Initialize(Vector2 direction, float speed, float damage, Weapon sourceWeapon, DamageableTargetFilter targetFilter)
+    public virtual void Initialize(Vector2 direction, float speed, float damage)
     {
         _damage = damage;
-        _targetFilter = targetFilter;
+        _hasHit = false;
         _rigidbody.velocity = direction.normalized * speed;
         transform.up = direction.normalized;
     }
-
-
 }
