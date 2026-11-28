@@ -10,6 +10,21 @@ public class ContactDamager : MonoBehaviour
     private float _nextDamageTime;
     private bool _isAttacking;
 
+    private void OnEnable()
+    {
+        _targetDetectionArea.TargetEntered += OnTargetEntered;
+        _targetDetectionArea.TargetExited += OnTargetExited;
+        TrySelectTarget();
+    }
+
+    private void OnDisable()
+    {
+        _targetDetectionArea.TargetEntered -= OnTargetEntered;
+        _targetDetectionArea.TargetExited -= OnTargetExited;
+        _target = null;
+        _isAttacking = false;
+    }
+
     private void Update()
     {
         if (_isAttacking == false || _target == null || Time.time < _nextDamageTime)
@@ -19,23 +34,33 @@ public class ContactDamager : MonoBehaviour
         _nextDamageTime = Time.time + _hitInterval;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTargetEntered(Collider2D other)
     {
-        if (other.TryGetComponent<IDamageable>(out IDamageable target) == false)
+        if (_target != null)
             return;
 
-        _target = target;
+        if (other.TryGetComponent<IDamageable>(out IDamageable target))
+            _target = target;
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTargetExited(Collider2D other)
     {
-        if (other.TryGetComponent<IDamageable>(out IDamageable target) == false)
+        if (other.TryGetComponent<IDamageable>(out IDamageable target) == false || _target != target)
             return;
 
-        if (_target == target)
+        _target = null;
+        TrySelectTarget();
+    }
+
+    private void TrySelectTarget()
+    {
+        foreach (Collider2D other in _targetDetectionArea.Targets)
         {
-            _target = null;
-            _isAttacking = false;
+            if (other != null && other.TryGetComponent<IDamageable>(out IDamageable target))
+            {
+                _target = target;
+                return;
+            }
         }
     }
 
