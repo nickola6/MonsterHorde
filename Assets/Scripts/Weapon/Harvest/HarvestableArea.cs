@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(TargetDetectionArea))]
 public class HarvestableArea : MonoBehaviour
 {
-    [SerializeField] private HarvestableWeapon _weapon;
+    [SerializeField] private HarvestWeapon _weapon;
     [SerializeField] private LineOfSight _lineOfSight;
 
     private TargetDetectionArea _targetDetectionArea;

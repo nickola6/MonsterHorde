@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class AxeWeapon : HarvestableWeapon
+public class AxeWeapon : HarvestWeapon
 {
     private const string HarvestTrigger = "Harvest";
 
