@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 public class Player : MonoBehaviour
 {
-    [SerializeField] private HarvestableArea _harvestableArea;
+    [SerializeField] private HarvestArea _harvestableArea;
     [SerializeField] private TargetDetectionArea _targetDetectionArea;
 
     private Health _health;

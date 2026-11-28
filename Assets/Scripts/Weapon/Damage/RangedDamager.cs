@@ -5,7 +5,7 @@ public class RangedDamager : MonoBehaviour
 {
     [SerializeField] private TargetDetectionArea _targetDetectionArea;
     [SerializeField] private LineOfSight _lineOfSight;
-    [SerializeField] private DamageableWeapon _weapon;
+    [SerializeField] private DamageWeapon _weapon;
 
     private Follower _follower;
 
