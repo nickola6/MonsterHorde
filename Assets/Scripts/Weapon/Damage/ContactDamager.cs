@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ContactDamager : MonoBehaviour
 {
-    [SerializeField] private LayerMask _targetLayers;
+    [SerializeField] private TargetDetectionArea _targetDetectionArea;
     [SerializeField] private float _damage = 5f;
     [SerializeField] private float _hitInterval = 1f;
 
@@ -21,9 +21,6 @@ public class ContactDamager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if ((_targetLayers.value & (1 << other.gameObject.layer)) == 0)
-            return;
-
         if (other.TryGetComponent<IDamageable>(out IDamageable target) == false)
             return;
 
